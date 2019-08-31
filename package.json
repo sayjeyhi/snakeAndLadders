@@ -1,0 +1,50 @@
+{
+  "name": "Snake and ladders starter",
+  "private": true,
+  "description": "Just a react redux snake and ladder",
+  "version": "0.1.0",
+  "author": "Jafar rezaei <jafar.rezaei.ard@gmail.com>",
+  "dependencies": {
+    "gatsby": "^2.13.73",
+    "gatsby-image": "^2.2.10",
+    "gatsby-plugin-manifest": "^2.2.6",
+    "gatsby-plugin-offline": "^2.2.7",
+    "gatsby-plugin-react-helmet": "^3.1.4",
+    "gatsby-plugin-sharp": "^2.2.13",
+    "gatsby-source-filesystem": "^2.1.11",
+    "gatsby-transformer-sharp": "^2.2.7",
+    "konva": "^4.0.5",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1",
+    "react-konva": "^16.9.0-0",
+    "react-motion": "^0.5.2",
+    "react-redux": "^7.1.1",
+    "react-sortable": "^2.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jafar-rezaei/s_d"
+  },
+  "bugs": {
+    "url": "https://github.com/jafar-rezaei/s_d/issues"
+  }
+}
