@@ -36,7 +36,7 @@ const initialState = {
   dice: {
     disabled: false,
   },
-  messages: ['Start rolling'],
+  messages: ['برای شروع تاس بیندازید'],
   grid: {
     layout: getLayout(GRID_WIDTH, GRID_HEIGHT),
     width: GRID_WIDTH,

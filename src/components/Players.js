@@ -52,7 +52,7 @@ class Player extends React.Component {
 
     return (
       <div className="player" style={playerStyle}>
-        {id}
+        <img src={"./../images/avatars/" + id + ".png"} alt={id} />
       </div>
     );
   }
