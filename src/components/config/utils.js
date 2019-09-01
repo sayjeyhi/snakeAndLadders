@@ -12,7 +12,6 @@ export function getRandomColor () {
 };
 
 export function getLayout (width, height) {
-
   const gridWidth = width;
   const gridHeight = height;
   const boxWidth = width / 10;
@@ -45,7 +44,7 @@ export function getLayout (width, height) {
 }
 
 export function getPlayerCoordinates (pos, grid, boxPosition) {
-  const { layout, box: { width, height } } = grid;  
+  const { layout, box: { width, height } } = grid;
   const x = layout[pos].x;
   const y = layout[pos].y;
 

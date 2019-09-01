@@ -9,23 +9,34 @@ export default class CanvasGrid extends React.Component {
     const { layout, box: { width: boxWidth, height: boxHeight }, width, height } = this.props.grid;
 
     return (
-      <Layer>
+      <Layer stroke={0} fill={'#ccc'}>
         {
           Object.keys(layout).map((box) => {
             const isEven = box % 2 === 0;
             return (
               <Group key = {`box_${box}`}>
-                <Rect x={0} y={0} width={width} height={height} stroke={styles.darkBlue} strokeWidth={4} />
+                <Rect x={0} y={0} width={width} height={height}  strokeWidth={4} />
                 <Rect
                   x = {layout[box].x - (boxWidth / 2)} y = {layout[box].y - (boxHeight / 2)}
                   width = {boxWidth} height = {boxHeight}
-                  fill = {isEven ? styles.darkBlue : styles.lightBlue }
+                  cornerRadius={10}
+                  fill = {isEven ? styles.gridLight : styles.gridDark }
+
+                  scale={{x : 0.92, y: 0.92}}
+                  // shadowEnabled={true}
+                  // shadowOffset={{ x: 0, y: -10 }}
+                  // shadowOpacity={1}
+                  // shadowBlur={60}
+                  // shadowColor={'rgba(0,0,0,0.2)'}
                 />
                 <Text
                   x = {layout[box].x - (boxWidth / 2)} y = {layout[box].y - (boxHeight / 2)}
-                  fill = {isEven ? styles.lightBlue : styles.darkBlue }
+                  fill = {'rgba(0,0,0,0.6)'}
                   text = {box} padding = {4}
-                  fontSize = {16} fontFamily = {'arial'} />
+                  fontSize = {16}
+                  fontStyle = {'bold'}
+                  fontFamily = {'SDF'}
+                />
               </Group>
             )
           })

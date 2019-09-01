@@ -1,5 +1,5 @@
 // const gridMeasurement = window.outerWidth > 672 ? window.outerWidth / 2 - 32 : window.outerWidth - 32;
-const gridMeasurement = 300;
+const gridMeasurement = 600;
 export const GRID_WIDTH = gridMeasurement;
 export const GRID_HEIGHT = gridMeasurement;
 export const BOX_WIDTH = GRID_WIDTH / 10;

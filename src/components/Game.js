@@ -107,6 +107,16 @@ class Game extends React.Component {
                     Roll Dice
                     <span style={styles.dice} dangerouslySetInnerHTML={this.state.diceOutput} />
                   </button>
+                <section id="cubeContainer">
+                  <div id="cube" className="show-spining show-4">
+                    <figure className="front">1</figure>
+                    <figure className="back">2</figure>
+                    <figure className="right">3</figure>
+                    <figure className="left">4</figure>
+                    <figure className="top">5</figure>
+                    <figure className="bottom">6</figure>
+                  </div>
+                </section>
               </section>
               <section className="actions-section">
                 <button onClick={() => {this.props.endGame()}} style={styles.endCta}>End</button>

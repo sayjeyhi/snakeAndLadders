@@ -1,0 +1,303 @@
+@charset "utf-8"
+
+@import "reset"
+@import "fonts/fonts"
+
+$gridLight: 'rgba(57,181,255,0.64)',
+$gridDark:'rgba(255,121,117,0.35)',
+$gray: '#131313',
+$white: '#fff',
+$red: '#ff0000',
+
+.main
+  margin: 0
+  font-size: 14px
+  color: #2c475d
+  font-family: 'sans-serif'
+
+.gameBlock
+  display: inline-block
+  vertical-align: top
+  padding: 10px
+
+.dataBlock
+  display: inline-block
+  vertical-align: top
+  padding: 16px
+  min-width: 320px
+
+.cta
+  padding: 6px 24px
+  border-radius: 32px
+  background: #fff
+  margin-right: 16px
+  border: 2px solid
+  outline: none
+  font-size: 16px
+  cursor: pointer
+  color: #204d7b
+
+.player
+  border-radius: 100%
+  border: 4px solid
+  width: 64px
+  height: 64px
+  text-align: center
+  line-height: 64px
+  vertical-align: middle
+  font-size: 32px
+  margin-right: 16px
+  color: #fff
+  display: inline-block
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1)
+
+.heading
+  border-bottom: 2px solid #ddd
+  font-weight: 300
+  padding-bottom: 4px
+  font-size: 32px
+
+.commentry
+  padding: 16px
+  background: #000
+  border-radius: 4px
+  color: lime
+  margin-top: 32px
+  line-height: 1.6rem
+
+.diceButton
+  font-size: 16px
+  border: none
+  border-radius: 4px
+  text-transform: uppercase
+  padding: 32px
+  width: 100%
+  letter-spacing: 4px
+  color: #fff
+  cursor: pointer
+  margin: 32px 0 0
+  background: linear-gradient(141deg, #204d7b 0%, #204d7b 51%, #1781a9 75%)
+
+.dice
+  font-size: 48px
+  margin-left: 12px
+  vertical-align: -8px
+  line-height: 16px
+
+.addPlayerCta
+  padding: 6px 24px
+  border-radius: 32px
+  background: #fff
+  border: 2px solid
+  outline: none
+  font-size: 16px
+  cursor: pointer
+  color: #204d7b
+  float: right
+  margin-right: 0
+
+.endCta
+  border-radius: 32px
+  background: #fff
+  margin-right: 16px
+  border: 2px solid
+  outline: none
+  font-size: 16px
+  cursor: pointer
+  margin-top: 32px
+  color: red
+  padding: 12px 24px
+
+.restartCta
+  border-radius: 32px
+  background: #fff
+  margin-right: 16px
+  border: 2px solid
+  outline: none
+  font-size: 16px
+  cursor: pointer
+  padding: 12px 24px
+  margin-top: 32px
+  color: gray
+
+.results
+  padding: 0 32px
+
+.inlineBlock
+  display: inline-block
+
+.resultCard
+  margin-right: 16px
+  margin-bottom: 16px
+  padding: 16px 24px
+  border-radius: 4px
+  line-height: 1.6rem
+  box-shadow: 0 3px 12px rgba(0, 0, 0, .1)
+  border: 1px solid #ccc
+  display: inline-block
+  background: #fff
+  color: #222
+  font-size: 16px
+  cursor: move
+
+.rules
+  margin-top: 16px
+  font-size: 12px
+  color: #ccc
+
+
+#cubeContainer
+  width: 100px
+  height: 100px
+  position: relative
+  margin: 30px auto
+  -webkit-perspective: 1000px
+  -moz-perspective: 1000px
+  -o-perspective: 1000px
+  perspective: 1000px
+  cursor: pointer
+
+#cube
+  width: 100%
+  height: 100%
+  position: absolute
+  -webkit-transform-style: preserve-3d
+  -moz-transform-style: preserve-3d
+  -o-transform-style: preserve-3d
+  transform-style: preserve-3d
+  -webkit-transition: -webkit-transform .5s
+  -moz-transition: -moz-transform .5s
+  -o-transition: -o-transform .5s
+  transition: transform .5s
+  figure
+    display: block
+    position: absolute
+    width: 100px
+    height: 100px
+    line-height: 97px
+    font-size: 60px
+    font-family: "BYekan"
+    color: #fff
+    text-align: center
+  &.panels-backface-invisible figure
+    -webkit-backface-visibility: hidden
+    -moz-backface-visibility: hidden
+    -o-backface-visibility: hidden
+    backface-visibility: hidden
+  > figure
+    background: #303030
+  .front
+    -webkit-transform: translateZ(50px)
+    -moz-transform: translateZ(50px)
+    -o-transform: translateZ(50px)
+    transform: translateZ(50px)
+  .back
+    -webkit-transform: rotateX(-180deg) translateZ(50px)
+    -moz-transform: rotateX(-180deg) translateZ(50px)
+    -o-transform: rotateX(-180deg) translateZ(50px)
+    transform: rotateX(-180deg) translateZ(50px)
+  .right
+    -webkit-transform: rotateY(90deg) translateZ(50px)
+    -moz-transform: rotateY(90deg) translateZ(50px)
+    -o-transform: rotateY(90deg) translateZ(50px)
+    transform: rotateY(90deg) translateZ(50px)
+  .left
+    -webkit-transform: rotateY(-90deg) translateZ(50px)
+    -moz-transform: rotateY(-90deg) translateZ(50px)
+    -o-transform: rotateY(-90deg) translateZ(50px)
+    transform: rotateY(-90deg) translateZ(50px)
+  .top
+    -webkit-transform: rotateX(90deg) translateZ(50px)
+    -moz-transform: rotateX(90deg) translateZ(50px)
+    -o-transform: rotateX(90deg) translateZ(50px)
+    transform: rotateX(90deg) translateZ(50px)
+  .bottom
+    -webkit-transform: rotateX(-90deg) translateZ(50px)
+    -moz-transform: rotateX(-90deg) translateZ(50px)
+    -o-transform: rotateX(-90deg) translateZ(50px)
+    transform: rotateX(-90deg) translateZ(50px)
+  &.show-spining
+    -webkit-transform: translateZ(-50px) rotateX(20deg) rotateY(20deg)
+    -moz-transform: translateZ(-50px) rotateX(20deg) rotateY(20deg)
+    -o-transform: translateZ(-50px) rotateX(20deg) rotateY(20deg)
+    transform: translateZ(-50px) rotateX(20deg) rotateY(20deg)
+  &.show-1
+    -webkit-transform: translateZ(-50px)
+    -moz-transform: translateZ(-50px)
+    -o-transform: translateZ(-50px)
+    transform: translateZ(-50px)
+  &.show-2
+    -webkit-transform: translateZ(-50px) rotateX(-180deg)
+    -moz-transform: translateZ(-50px) rotateX(-180deg)
+    -o-transform: translateZ(-50px) rotateX(-180deg)
+    transform: translateZ(-50px) rotateX(-180deg)
+  &.show-3
+    -webkit-transform: translateZ(-50px) rotateY(-90deg)
+    -moz-transform: translateZ(-50px) rotateY(-90deg)
+    -o-transform: translateZ(-50px) rotateY(-90deg)
+    transform: translateZ(-50px) rotateY(-90deg)
+  &.show-4
+    -webkit-transform: translateZ(-50px) rotateY(90deg)
+    -moz-transform: translateZ(-50px) rotateY(90deg)
+    -o-transform: translateZ(-50px) rotateY(90deg)
+    transform: translateZ(-50px) rotateY(90deg)
+  &.show-5
+    -webkit-transform: translateZ(-50px) rotateX(-90deg)
+    -moz-transform: translateZ(-50px) rotateX(-90deg)
+    -o-transform: translateZ(-50px) rotateX(-90deg)
+    transform: translateZ(-50px) rotateX(-90deg)
+  &.show-6
+    -webkit-transform: translateZ(-50px) rotateX(90deg)
+    -moz-transform: translateZ(-50px) rotateX(90deg)
+    -o-transform: translateZ(-50px) rotateX(90deg)
+    transform: translateZ(-50px) rotateX(90deg)
+
+@-webkit-keyframes spaceboots
+  0%
+    -webkit-transform: translate(4px, 1px) rotate(0deg)
+
+  10%
+    -webkit-transform: translate(-1px, -2px) rotate(-2deg)
+
+  20%
+    -webkit-transform: translate(-4px, 0px) rotate(1deg)
+
+  30%
+    -webkit-transform: translate(0px, 2px) rotate(0deg)
+
+  40%
+    -webkit-transform: translate(1px, -1px) rotate(1deg)
+
+  50%
+    -webkit-transform: translate(-1px, 2px) rotate(-2deg)
+
+  60%
+    -webkit-transform: translate(-4px, 1px) rotate(0deg)
+
+  70%
+    -webkit-transform: translate(4px, 1px) rotate(-2deg)
+
+  80%
+    -webkit-transform: translate(-1px, -1px) rotate(1deg)
+
+  90%
+    -webkit-transform: translate(4px, 2px) rotate(0deg)
+
+  100%
+    -webkit-transform: translate(1px, -2px) rotate(-2deg)
+
+
+.snakedPlayer
+  -webkit-animation-name: spaceboots
+  -webkit-animation-duration: 1s
+  -webkit-transform-origin: 50% 50%
+  -webkit-animation-iteration-count: infinite
+  -webkit-animation-timing-function: linear
+
+@media screen and (max-width: 700px)
+  .gameRow > span
+    font-size: 11px
+
+@media screen and (max-width: 600px)
+  .gameRow > span
+    font-size: 10px

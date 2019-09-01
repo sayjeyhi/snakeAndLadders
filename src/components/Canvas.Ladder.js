@@ -1,7 +1,6 @@
 import React from 'react';
 import { Layer, Line } from 'react-konva';
-import { getPlayerCoordinates } from '../config/utils';
-import { styles } from '../styles';
+import { getPlayerCoordinates } from './config/utils';
 
 export default class CanvasLadder extends React.Component {
   render () {

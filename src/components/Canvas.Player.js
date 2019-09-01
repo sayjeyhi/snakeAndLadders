@@ -2,7 +2,6 @@ import React from 'react';
 import { Motion, spring } from 'react-motion';
 import { Circle, Layer, Group, Text } from 'react-konva';
 import { getPlayerCoordinates } from '../config/utils';
-import { styles } from '../styles';
 
 export default class CanvasPlayer extends React.Component {
 

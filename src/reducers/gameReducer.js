@@ -5,13 +5,15 @@ import {
   GRID_HEIGHT,
   GAME_OVER,
   GAME_ON
-} from '../config/variables';
+} from '../components/config/variables';
+
 import {
   getRandomColor,
   getLayout,
   getSnakes,
   getLadders
-} from '../config/utils';
+} from '../components/config/utils';
+
 import {
   ADD_NEW_PLAYER,
   MOVE_PLAYER,
@@ -27,6 +29,7 @@ import {
   RESTART_GAME,
   REDRAW
 } from '../actions/GameActions';
+
 
 const firstPlayerColor = getRandomColor();
 const initialState = {
