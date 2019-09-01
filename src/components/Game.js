@@ -20,7 +20,7 @@ import {
   redraw,
 } from '../actions/GameActions';
 import { GAME_ON, MAX_PLAYERS } from './../selectors/variables';
-import { delay } from './../selectors/utils';
+import {delay, getRandomExcellentEmoji, getRandomRegularEmoji, getRandomSadEmoji} from './../selectors/utils';
 import _ from 'lodash';
 
 class Game extends React.Component {
@@ -65,6 +65,7 @@ class Game extends React.Component {
             <GamePlay />
 
             <div className={'dataBlock'}>
+              <span className={'rightTitle'}>نفرات</span>
               <section className="playersPart">
                 <Players
                   players={players}
@@ -74,6 +75,7 @@ class Game extends React.Component {
               <section className="messagePart">{messages[0]}</section>
               <section className="dicePart">
                 <button
+                  className={'rollDiceBtn'}
                   disabled={isDiceDisabled}
                   onClick={this._rollDice.bind(this)}
                   style={{
@@ -131,16 +133,31 @@ class Game extends React.Component {
      * GAME LOGIC
      **/
     if (newPos > 100) {
-      this.props.logMessage(`Hang in there Player ${id}`);
+      this.props.logMessage(` بازیکن شماره ${id} منتظر عدد مناسب ! 😨 `);
       this.props.changePlayer();
     } else if (newPos == 100) {
       this.props.movePlayer(newPos);
       this.props.endGame();
     } else {
       this.props.movePlayer(newPos);
+      let emoji = getRandomRegularEmoji();
+      switch (diceResult) {
+        case 1:
+        case 2:
+          emoji = getRandomSadEmoji();
+          break;
+        case 3:
+        case 4:
+          emoji = getRandomRegularEmoji();
+          break;
+        case 5:
+        case 6:
+          emoji = getRandomExcellentEmoji();
+          break;
+      }
       this.props.logMessage(
-        `Player ${id} moved from  block ${pos} to block ${newPos}. ${
-          diceResult === 6 ? '**SIX**' : ''
+        `بازیکن  ${id} ${diceResult} آورد ${emoji} ${
+          diceResult === 6 ? '***' : ''
         }`
       );
 
@@ -174,7 +191,7 @@ class Game extends React.Component {
       this.props.movePlayer(snake.endPos);
       this.props.addSnakeBite();
       this.props.logMessage(
-        `A snake ate Player ${id} at ${playerPos}, moved to block ${snake.endPos}`
+        `بازیکن  ${id} با مار برخورد کرد ${getRandomSadEmoji()}`
       );
     }
 
@@ -184,7 +201,7 @@ class Game extends React.Component {
       this.props.movePlayer(ladder.endPos);
       this.props.addLadderHike();
       this.props.logMessage(
-        `Player ${id} found Ladder at ${playerPos}, moved to block ${ladder.endPos}`
+        `بازیکن  ${id} از نردبان بالا رفت  ${getRandomExcellentEmoji()}`
       );
     }
   }

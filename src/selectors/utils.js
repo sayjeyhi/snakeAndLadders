@@ -1,7 +1,26 @@
+const getRandomArbitrary = (min, max) => {
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
 let colorIndex = 0;
 export function getRandomColor() {
   const colorPalette = ['#007ae1', '#ff2d55', '#4cd964', '#ff9500'];
   return colorPalette[colorIndex++ % 4];
+}
+
+export function getRandomSadEmoji() {
+  const array = ['😤', '🥺', '🤢', '😔', '🥺', '🤢', '😑', '🤬'];
+  return array[getRandomArbitrary(0,array.length-1)];
+}
+
+export function getRandomRegularEmoji() {
+  const array = [ '🤗', '😝', '😌', '🥴', '🤓'];
+  return array[getRandomArbitrary(0,array.length-1)];
+}
+
+export function getRandomExcellentEmoji() {
+  const array = ['😍', '😎', '🤩', '😏', '😈'];
+  return array[getRandomArbitrary(0,array.length-1)];
 }
 
 export function getLayout(width, height) {
