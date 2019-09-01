@@ -1,3 +1,5 @@
+const path = require("path")
+
 module.exports = {
   siteMetadata: {
     title: `Snake and ladders starter`,
@@ -15,6 +17,29 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: "gatsby-plugin-root-import",
+      options: {
+        native: path.join(__dirname, "src/native"),
+        reducers: path.join(__dirname, "src/reducers"),
+        sagas: path.join(__dirname, "src/sagas"),
+        selectors: path.join(__dirname, "src/selectors"),
+        store: path.join(__dirname, "src/store"),
+        web: path.join(__dirname, "src/web"),
+      },
+    },
+    {
+      resolve: `gatsby-plugin-page-creator`,
+      options: {
+        path: path.join(__dirname, "src/web/pages"),
+      },
+    },
+    {
+      resolve: "gatsby-plugin-sass",
+      options: {
+        implementation: require("node-sass"),
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

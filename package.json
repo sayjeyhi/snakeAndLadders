@@ -9,8 +9,10 @@
     "gatsby-image": "^2.2.15",
     "gatsby-plugin-manifest": "^2.2.12",
     "gatsby-plugin-offline": "^3.0.0",
+    "gatsby-plugin-page-creator": "^2.1.15",
     "gatsby-plugin-react-helmet": "^3.1.5",
-    "gatsby-plugin-sass": "^2.1.12",
+    "gatsby-plugin-root-import": "^2.0.5",
+    "gatsby-plugin-sass": "^2.1.13",
     "gatsby-plugin-sharp": "^2.2.18",
     "gatsby-source-filesystem": "^2.1.18",
     "gatsby-transformer-sharp": "^2.2.12",
@@ -24,9 +26,9 @@
     "react-motion": "^0.5.2",
     "react-redux": "^7.1.1",
     "react-sortable": "^2.0.0",
+    "redux": "latest",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "redux": "latest"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
