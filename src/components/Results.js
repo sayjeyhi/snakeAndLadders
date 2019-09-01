@@ -1,29 +1,29 @@
-import React from "react"
-import { Sortable } from "react-sortable"
+import React from 'react';
+import { Sortable } from 'react-sortable';
 
 const SortableResultItem = Sortable(props => (
   <div {...props} className="list-item">
     {props.children}
   </div>
-))
+));
 
 export default class Results extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       draggingIndex: null,
       data: this.props.players,
-    }
+    };
   }
 
   updateState(obj) {
-    this.setState(obj)
+    this.setState(obj);
   }
 
   render() {
     return (
       <section className="results-section results">
-        <h1 className={"heading"}>Results</h1>
+        <h1 className={'heading'}>نتایج مسابقه</h1>
         <div className="list inlineBlock">
           {this.state.data.map((playerStat, i) => {
             const {
@@ -34,7 +34,7 @@ export default class Results extends React.Component {
               diceLog,
               snakeBites,
               ladderHikes,
-            } = playerStat
+            } = playerStat;
             return (
               <SortableResultItem
                 key={i}
@@ -44,31 +44,31 @@ export default class Results extends React.Component {
                 sortId={i}
                 outline="list"
               >
-                <div className={"resultCard"}>
-                  <strong>Player {id} </strong>
-                  {pos === 100 ? "( winner )" : ""}
+                <div className={'resultCard'}>
+                  <strong>بازیکن {id} </strong>
+                  {pos === 100 ? '( winner )' : ''}
                   <br />
-                  {diceLog.length} Dice thrown, &nbsp;
-                  {diceLog.filter(dice => dice === 6).length} Six(s) rolled,
+                  {diceLog.length} پرتاب تاس, &nbsp;
+                  {diceLog.filter(dice => dice === 6).length} پرتاب جایزه‌دار,
                   &nbsp;
-                  {snakeBites} Snake bites, &nbsp;
-                  {ladderHikes} Ladder hikes
+                  {snakeBites} برخورد با مار, &nbsp;
+                  {ladderHikes} جهش با نردبان
                 </div>
               </SortableResultItem>
-            )
+            );
           })}
         </div>
         <div>
           <button
-            className={"restartCta"}
+            className={'btn'}
             onClick={() => {
-              this.props.startNewGame()
+              this.props.startNewGame();
             }}
           >
-            Start new game
+            شروع بازی جدید
           </button>
         </div>
       </section>
-    )
+    );
   }
 }

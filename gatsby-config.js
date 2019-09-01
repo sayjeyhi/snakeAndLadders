@@ -1,4 +1,4 @@
-const path = require("path")
+const path = require('path');
 
 module.exports = {
   siteMetadata: {
@@ -18,26 +18,26 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: "gatsby-plugin-root-import",
+      resolve: 'gatsby-plugin-root-import',
       options: {
-        native: path.join(__dirname, "src/native"),
-        reducers: path.join(__dirname, "src/reducers"),
-        sagas: path.join(__dirname, "src/sagas"),
-        selectors: path.join(__dirname, "src/selectors"),
-        store: path.join(__dirname, "src/store"),
-        web: path.join(__dirname, "src/web"),
+        native: path.join(__dirname, 'src/native'),
+        reducers: path.join(__dirname, 'src/reducers'),
+        sagas: path.join(__dirname, 'src/sagas'),
+        selectors: path.join(__dirname, 'src/selectors'),
+        store: path.join(__dirname, 'src/store'),
+        web: path.join(__dirname, 'src/web'),
       },
     },
     {
       resolve: `gatsby-plugin-page-creator`,
       options: {
-        path: path.join(__dirname, "src/web/pages"),
+        path: path.join(__dirname, 'src/web/pages'),
       },
     },
     {
-      resolve: "gatsby-plugin-sass",
+      resolve: 'gatsby-plugin-sass',
       options: {
-        implementation: require("node-sass"),
+        implementation: require('node-sass'),
       },
     },
     {
@@ -56,4 +56,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `components-plugin-offline`,
   ],
-}
+};

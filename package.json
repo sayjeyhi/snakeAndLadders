@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Jafar rezaei <jafar.rezaei.ard@gmail.com>",
   "dependencies": {
+    "browser-monads": "^1.0.0",
     "gatsby": "^2.15.1",
     "gatsby-image": "^2.2.15",
     "gatsby-plugin-manifest": "^2.2.12",
@@ -28,7 +29,8 @@
     "react-sortable": "^2.0.0",
     "redux": "latest",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "lodash": "latest"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

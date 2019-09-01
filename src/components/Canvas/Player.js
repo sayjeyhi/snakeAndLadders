@@ -1,8 +1,8 @@
-import React from "react"
-import { Motion, spring } from "react-motion"
-import { Circle, Group, Text } from "react-konva"
-import { getPlayerCoordinates } from "./../../selectors/utils"
-import { WHITE } from "./../../selectors/variables"
+import React from 'react';
+import { Motion, spring } from 'react-motion';
+import { Circle, Group, Text } from 'react-konva';
+import { getPlayerCoordinates } from './../../selectors/utils';
+import { WHITE } from './../../selectors/variables';
 
 const Player = props => {
   const {
@@ -12,10 +12,10 @@ const Player = props => {
       box: { width },
     },
     grid,
-  } = props
-  const { x, y } = getPlayerCoordinates(pos, grid, boxPosition)
-  const isCurrent = id === currentPlayerId
-  const isSmallScreen = width < 48
+  } = props;
+  const { x, y } = getPlayerCoordinates(pos, grid, boxPosition);
+  const isCurrent = id === currentPlayerId;
+  const isSmallScreen = width < 48;
 
   return (
     <>
@@ -36,13 +36,13 @@ const Player = props => {
               fill={isCurrent ? color : WHITE}
               text={id}
               fontSize={isSmallScreen ? 6 : 15}
-              fontFamily={"arial"}
+              fontFamily={'arial'}
             />
           </Group>
         )}
       </Motion>
     </>
-  )
-}
+  );
+};
 
-export default Player
+export default Player;

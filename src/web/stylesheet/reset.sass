@@ -425,10 +425,7 @@ td
   -moz-font-feature-settings: "tnum"
   -ms-font-feature-settings: "tnum"
   -webkit-font-feature-settings: "tnum"
-  padding-left: 0.96667rem
-  padding-right: 0.96667rem
-  padding-top: 0.725rem
-  padding-bottom: calc(0.725rem - 1px)
+  padding: 0.725rem 0.96667rem calc(0.725rem - 1px)
 
 th
   text-align: left
@@ -437,10 +434,8 @@ th
   -moz-font-feature-settings: "tnum"
   -ms-font-feature-settings: "tnum"
   -webkit-font-feature-settings: "tnum"
-  padding-left: 0.96667rem
-  padding-right: 0.96667rem
-  padding-top: 0.725rem
-  padding-bottom: calc(0.725rem - 1px)
+  padding: 0.725rem 0.96667rem calc(0.725rem - 1px)
+
   &:first-child
     padding-left: 0
 
@@ -454,9 +449,7 @@ tt, code
   background-color: hsla(0, 0%, 0%, 0.04)
   border-radius: 3px
   font-family: "SFMono-Regular", Consolas, "Roboto Mono", "Droid Sans Mono", "Liberation Mono", Menlo, Courier, monospace
-  padding: 0
-  padding-top: 0.2em
-  padding-bottom: 0.2em
+  padding: 0.2em 0
 
 pre code
   background: none
@@ -479,6 +472,18 @@ pre
   tt
     &:before, &:after
       content: ""
+
+footer
+  display: flex
+  align-content: center
+  justify-content: center
+  margin-top: 5px
+  font-size: 12px
+  color: #ccc
+  a
+    color: #ccc
+    text-decoration: underline
+    margin-left: 4px
 
 @media only screen and (max-width: 480px)
   html

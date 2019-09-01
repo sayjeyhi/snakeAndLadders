@@ -1,11 +1,11 @@
-import React from "react"
-import { Stage, Layer } from "react-konva"
+import React from 'react';
+import { Stage, Layer } from 'react-konva';
 
-import Grid from "./Canvas/Grid"
-import Ladder from "./Canvas/Ladder"
-import Player from "./Canvas/Player"
-import Snake from "./Canvas/Snake"
-import { connect } from "react-redux"
+import Grid from './Canvas/Grid';
+import Ladder from './Canvas/Ladder';
+import Player from './Canvas/Player';
+import Snake from './Canvas/Snake';
+import { connect } from 'react-redux';
 
 const GamePlay = props => {
   const {
@@ -16,10 +16,10 @@ const GamePlay = props => {
       all,
       current: { color: currentPlayerColor },
       current,
-    }
-  } = props.game
+    },
+  } = props.game;
   return (
-    <div className={"gameBlock"}>
+    <div className={'gameBlock'}>
       <Stage width={grid.width} height={grid.height}>
         <Layer>
           {/* Main game board */}
@@ -29,28 +29,33 @@ const GamePlay = props => {
           snakes.map((snake, index) => {
             return (
               <Snake key={`canvasSnake_${index}`} snake={snake} grid={grid} />
-            )
+            );
           })}
           {// Make ladders
           ladders.map((ladder, index) => {
             return (
               <Ladder key={`ladder_${index}`} ladder={ladder} grid={grid} />
-            )
+            );
           })}
           {// Make players
           all.map((p, index) => {
             return (
-              <Player key={`player_${index}`} player={p} current={current} grid={grid} />
-            )
+              <Player
+                key={`player_${index}`}
+                player={p}
+                current={current}
+                grid={grid}
+              />
+            );
           })}
         </Layer>
       </Stage>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => ({
   game: state.game,
-})
+});
 
-export default connect(mapStateToProps)(GamePlay)
+export default connect(mapStateToProps)(GamePlay);

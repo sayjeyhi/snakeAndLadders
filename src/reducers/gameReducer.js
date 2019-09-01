@@ -5,14 +5,14 @@ import {
   GRID_HEIGHT,
   GAME_OVER,
   GAME_ON,
-} from "../selectors/variables"
+} from '../selectors/variables';
 
 import {
   getRandomColor,
   getLayout,
   getSnakes,
   getLadders,
-} from "../selectors/utils"
+} from '../selectors/utils';
 
 import {
   ADD_NEW_PLAYER,
@@ -28,15 +28,15 @@ import {
   ADD_LADDER_HIKE,
   RESTART_GAME,
   REDRAW,
-} from "../actions/GameActions"
+} from '../actions/GameActions';
 
-const firstPlayerColor = getRandomColor()
+const firstPlayerColor = getRandomColor();
 const initialState = {
   status: GAME_ON,
   dice: {
     disabled: false,
   },
-  messages: ["Start rolling"],
+  messages: ['Start rolling'],
   grid: {
     layout: getLayout(GRID_WIDTH, GRID_HEIGHT),
     width: GRID_WIDTH,
@@ -75,12 +75,12 @@ const initialState = {
       },
     ],
   },
-}
+};
 
 export function game(state = initialState, action) {
   switch (action.type) {
     case ADD_NEW_PLAYER:
-      const newPlayer = _generateNewPlayer(state.players.count)
+      const newPlayer = _generateNewPlayer(state.players.count);
 
       return {
         ...state,
@@ -96,13 +96,13 @@ export function game(state = initialState, action) {
           all: [...state.players.all, newPlayer],
           count: state.players.count + 1,
         },
-      }
+      };
 
     case MOVE_PLAYER:
-      let newOccupancy = {}
-      newOccupancy[action.newPos] = state.grid.occupancy[action.newPos] + 1
+      let newOccupancy = {};
+      newOccupancy[action.newPos] = state.grid.occupancy[action.newPos] + 1;
       newOccupancy[state.players.current.pos] =
-        state.grid.occupancy[state.players.current.pos] - 1
+        state.grid.occupancy[state.players.current.pos] - 1;
 
       return {
         ...state,
@@ -126,9 +126,9 @@ export function game(state = initialState, action) {
                 pos: action.newPos,
                 boxPosition: -1,
                 path: [...p.path, action.newPos],
-              }
+              };
             }
-            return p
+            return p;
           }),
           current: {
             ...state.players.current,
@@ -137,10 +137,10 @@ export function game(state = initialState, action) {
             path: [...state.players.current.path, action.newPos],
           },
         },
-      }
+      };
 
     case CHANGE_PLAYER:
-      var nextPlayer = _getNextPlayer(state.players)
+      var nextPlayer = _getNextPlayer(state.players);
       return {
         ...state,
         dice: {
@@ -150,7 +150,7 @@ export function game(state = initialState, action) {
           ...state.players,
           current: nextPlayer,
         },
-      }
+      };
 
     case RECORD_DICE_LOG:
       return {
@@ -162,16 +162,16 @@ export function game(state = initialState, action) {
               return {
                 ...p,
                 diceLog: [...p.diceLog, action.diceResult],
-              }
+              };
             }
-            return p
+            return p;
           }),
           current: {
             ...state.players.current,
             diceLog: [...state.players.current.diceLog, action.diceResult],
           },
         },
-      }
+      };
 
     case CHANGE_PLAYER_POSITION_IN_BOX:
       let curPlayer =
@@ -180,7 +180,7 @@ export function game(state = initialState, action) {
               ...state.players.current,
               boxPosition: action.newBoxPosition,
             }
-          : state.players.current
+          : state.players.current;
       return {
         ...state,
         players: {
@@ -190,19 +190,19 @@ export function game(state = initialState, action) {
               return {
                 ...p,
                 boxPosition: action.newBoxPosition,
-              }
+              };
             }
-            return p
+            return p;
           }),
           current: curPlayer,
         },
-      }
+      };
 
     case LOG_MESSAGE:
       return {
         ...state,
         messages: [action.message, ...state.messages],
-      }
+      };
 
     case SET_PLAYER_PERSISTENCE:
       return {
@@ -211,7 +211,7 @@ export function game(state = initialState, action) {
           ...state.players,
           persistence: action.persistence,
         },
-      }
+      };
 
     case ENABLE_DICE:
       return {
@@ -220,16 +220,16 @@ export function game(state = initialState, action) {
           ...state.dice,
           disabled: false,
         },
-      }
+      };
 
     case END_GAME:
       return {
         ...state,
         status: GAME_OVER,
-      }
+      };
 
     case ADD_SNAKE_BITE:
-      const newSnakeBites = state.players.current.snakeBites + 1
+      const newSnakeBites = state.players.current.snakeBites + 1;
       return {
         ...state,
         players: {
@@ -239,19 +239,19 @@ export function game(state = initialState, action) {
               return {
                 ...p,
                 snakeBites: newSnakeBites,
-              }
+              };
             }
-            return p
+            return p;
           }),
           current: {
             ...state.players.current,
             snakeBites: newSnakeBites,
           },
         },
-      }
+      };
 
     case ADD_LADDER_HIKE:
-      const newLadderHikes = state.players.current.ladderHikes + 1
+      const newLadderHikes = state.players.current.ladderHikes + 1;
       return {
         ...state,
         players: {
@@ -261,25 +261,25 @@ export function game(state = initialState, action) {
               return {
                 ...p,
                 ladderHikes: newLadderHikes,
-              }
+              };
             }
-            return p
+            return p;
           }),
           current: {
             ...state.players.current,
             ladderHikes: newLadderHikes,
           },
         },
-      }
+      };
 
     case RESTART_GAME:
-      return initialState
+      return initialState;
 
     case REDRAW:
-      let newGrid = {}
-      let newWidth = action.width - 32
-      let newHeight = action.height - 32
-      newWidth = newWidth > 672 ? newWidth / 2 : newWidth
+      let newGrid = {};
+      let newWidth = action.width - 32;
+      let newHeight = action.height - 32;
+      // newWidth = newWidth > 672 ? newWidth / 2 : newWidth;
       newGrid = {
         layout: getLayout(newWidth, newWidth),
         width: newWidth,
@@ -288,17 +288,17 @@ export function game(state = initialState, action) {
           height: newWidth / 10,
           width: newWidth / 10,
         },
-      }
+      };
       return {
         ...state,
         grid: {
           ...state.grid,
           ...newGrid,
         },
-      }
+      };
 
     default:
-      return state
+      return state;
   }
 }
 
@@ -316,20 +316,20 @@ function _generateNewPlayer(curCount) {
     boxPosition: -1, //center
     snakeBites: 0,
     ladderHikes: 0,
-  }
+  };
 }
 
 function _getNextPlayer({ all, current, count }) {
   return current.id === count
     ? all[0]
-    : all.filter(p => p.id === current.id + 1)[0]
+    : all.filter(p => p.id === current.id + 1)[0];
 }
 
 function _initializeOccupancy() {
-  var occupacy = {}
-  occupacy[1] = 1
+  var occupacy = {};
+  occupacy[1] = 1;
   for (let i = 2; i <= 100; i++) {
-    occupacy[i] = 0
+    occupacy[i] = 0;
   }
-  return occupacy
+  return occupacy;
 }

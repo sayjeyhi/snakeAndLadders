@@ -1,12 +1,12 @@
-import React from "react"
+import React from 'react';
 
-import Layout from "./../../web/components/layout"
-import SEO from "./../../web/components/seo"
+import Layout from './../../web/components/layout';
+import SEO from './../../web/components/seo';
 
 // import {renderToNodeStream} from 'react-dom/server';
-import { Provider } from "react-redux"
-import store from "./../../store"
-import Game from "./../../components/Game"
+import { Provider } from 'react-redux';
+import store from './../../store';
+import Game from './../../components/Game';
 
 //const domEntry = document.getElementById('snakes');
 
@@ -17,6 +17,6 @@ const Main = () => (
       <Game />
     </Provider>
   </Layout>
-)
+);
 
-export default Main
+export default Main;

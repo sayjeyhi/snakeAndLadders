@@ -1,20 +1,18 @@
-// import { BOX_WIDTH, BOX_HEIGHT, GRID_WIDTH, GRID_HEIGHT } from "./variables"
-
-let colorIndex = 0
+let colorIndex = 0;
 export function getRandomColor() {
-  const colorPalette = ["#007ae1", "#ff2d55", "#4cd964", "#ff9500"]
-  return colorPalette[colorIndex++ % 4]
+  const colorPalette = ['#007ae1', '#ff2d55', '#4cd964', '#ff9500'];
+  return colorPalette[colorIndex++ % 4];
 }
 
 export function getLayout(width, height) {
-  const gridWidth = width
-  const gridHeight = height
-  const boxWidth = width / 10
-  const boxHeight = height / 10
+  const gridWidth = width;
+  const gridHeight = height;
+  const boxWidth = width / 10;
+  const boxHeight = height / 10;
 
-  let layout = {}
+  let layout = {};
   const oddRows = [1, 3, 5, 7, 9],
-    evenRows = [0, 2, 4, 6, 8]
+    evenRows = [0, 2, 4, 6, 8];
 
   for (let col = 1; col <= 10; col++) {
     //even rows
@@ -23,8 +21,8 @@ export function getLayout(width, height) {
         x: (col - 1) * boxWidth + boxWidth / 2,
         y: gridHeight - (row * boxHeight + boxHeight / 2),
         id: col + 10 * row,
-      }
-    })
+      };
+    });
 
     //odd rows
     oddRows.map(row => {
@@ -32,55 +30,55 @@ export function getLayout(width, height) {
         x: gridWidth - ((col - 1) * boxWidth + boxWidth / 2),
         y: gridHeight - (row * boxHeight + boxHeight / 2),
         id: col + 10 * row,
-      }
-    })
+      };
+    });
   }
-  return layout
+  return layout;
 }
 
 export function getPlayerCoordinates(pos, grid, boxPosition) {
   const {
     layout,
     box: { width, height },
-  } = grid
-  const x = layout[pos].x
-  const y = layout[pos].y
+  } = grid;
+  const x = layout[pos].x;
+  const y = layout[pos].y;
 
   switch (boxPosition) {
     case 0: //top left
       return {
         x: x - width / 4,
         y: y - height / 4,
-      }
+      };
 
     case 1: //top right
       return {
         x: x + width / 4,
         y: y - height / 4,
-      }
+      };
 
     case 2: //bottom left
       return {
         x: x - width / 4,
         y: y + height / 4,
-      }
+      };
 
     case 3: //bottom right
       return {
         x: x + width / 4,
         y: y + height / 4,
-      }
+      };
 
     default:
       return {
         x: x,
         y: y,
-      }
+      };
   }
 }
 
 export function delay(callback) {
-  return setTimeout(callback, 300)
+  return setTimeout(callback, 300);
 }
 
 export function getSnakes() {
@@ -115,7 +113,7 @@ export function getSnakes() {
       startPos: 97,
       endPos: 79,
     },
-  ]
+  ];
 }
 
 export function getLadders() {
@@ -150,5 +148,5 @@ export function getLadders() {
       startPos: 90,
       endPos: 91,
     },
-  ]
+  ];
 }

@@ -1,15 +1,15 @@
-import React from "react"
-import { Line, Circle } from "react-konva"
-import { getPlayerCoordinates } from "./../../selectors/utils"
-import { RED } from "./../../selectors/variables"
+import React from 'react';
+import { Line, Circle } from 'react-konva';
+import { getPlayerCoordinates } from './../../selectors/utils';
+import { RED } from './../../selectors/variables';
 
 const Snake = props => {
   const {
     snake: { startPos, endPos },
     grid,
-  } = props
-  const { x: startX, y: startY } = getPlayerCoordinates(startPos, grid)
-  const { x: endX, y: endY } = getPlayerCoordinates(endPos, grid)
+  } = props;
+  const { x: startX, y: startY } = getPlayerCoordinates(startPos, grid);
+  const { x: endX, y: endY } = getPlayerCoordinates(endPos, grid);
 
   return (
     <>
@@ -22,7 +22,7 @@ const Snake = props => {
       />
       <Circle x={startX} y={startY} radius={5} fill={RED} />
     </>
-  )
-}
+  );
+};
 
-export default Snake
+export default Snake;

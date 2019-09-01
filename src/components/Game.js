@@ -1,8 +1,8 @@
-import React from "react"
-import { connect } from "react-redux"
-import GamePlay from "./GamePlay"
-import Players from "./Players"
-import Results from "./Results"
+import React from 'react';
+import { connect } from 'react-redux';
+import GamePlay from './GamePlay';
+import Players from './Players';
+import Results from './Results';
 import {
   addNewPlayer,
   getRollDiceResult,
@@ -18,28 +18,28 @@ import {
   addLadderHike,
   restartGame,
   redraw,
-} from "../actions/GameActions"
-import { GAME_ON, MAX_PLAYERS } from "./../selectors/variables"
-import { delay } from "./../selectors/utils"
-import _ from "lodash"
+} from '../actions/GameActions';
+import { GAME_ON, MAX_PLAYERS } from './../selectors/variables';
+import { delay } from './../selectors/utils';
+import _ from 'lodash';
 
 class Game extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      diceOutput: { __html: "&#x2684;" },
-    }
+      diceOutput: { __html: '&#x2684;' },
+    };
   }
 
   handleResize(e) {
-    this.props.redraw(e.target.outerWidth, e.target.outerHeight)
+    this.props.redraw(e.target.outerWidth, e.target.outerHeight);
   }
 
   componentDidMount() {
     window.addEventListener(
-      "resize",
+      'resize',
       _.debounce(this.handleResize.bind(this), 500)
-    )
+    );
   }
 
   // componentWillUnmount () {
@@ -56,23 +56,23 @@ class Game extends React.Component {
       },
       players,
       messages,
-    } = this.props.game
+    } = this.props.game;
 
     return (
-      <div className={"main"}>
+      <div className={'main'}>
         {status === GAME_ON ? (
           <>
             <GamePlay />
 
-            <div className={"dataBlock"}>
-              <Players
-                players={players}
-                addNewPlayer={this._addNewPlayer.bind(this)}
-              />
-              <section className="commentry-section commentry">
-                {messages[0]}
+            <div className={'dataBlock'}>
+              <section className="playersPart">
+                <Players
+                  players={players}
+                  addNewPlayer={this._addNewPlayer.bind(this)}
+                />
               </section>
-              <section className="dice-section">
+              <section className="messagePart">{messages[0]}</section>
+              <section className="dicePart">
                 <button
                   disabled={isDiceDisabled}
                   onClick={this._rollDice.bind(this)}
@@ -80,33 +80,28 @@ class Game extends React.Component {
                     opacity: isDiceDisabled ? 0.5 : 1,
                   }}
                 >
-                  Roll Dice
+                  پرتاب تاس
                   <span
-                    className={"dice"}
+                    className={'dice'}
                     dangerouslySetInnerHTML={this.state.diceOutput}
                   />
                 </button>
-              </section>
-              <section className="actions-section">
                 <button
                   onClick={() => {
-                    this.props.endGame()
+                    this.props.endGame();
                   }}
-                  className="endCta"
+                  className="btn"
                 >
-                  End
+                  پایان
                 </button>
                 <button
                   onClick={() => {
-                    this.props.restartGame()
+                    this.props.restartGame();
                   }}
-                  className="restartCta"
+                  className="btn"
                 >
-                  Restart
+                  ریستارت
                 </button>
-              </section>
-              <section className="sction-rules rules">
-                * Upto 4 Players can play at a time. <br />
               </section>
             </div>
           </>
@@ -114,7 +109,7 @@ class Game extends React.Component {
           <Results players={all} startNewGame={this.props.restartGame} />
         )}
       </div>
-    )
+    );
   }
 
   _rollDice() {
@@ -123,41 +118,41 @@ class Game extends React.Component {
         current: { id, pos },
         persistence,
       },
-    } = this.props.game
-    const diceResult = getRollDiceResult()
+    } = this.props.game;
+    const diceResult = getRollDiceResult();
     this.setState({
       diceOutput: { __html: `&#x268${diceResult - 1};` },
-    })
-    const newPos = pos + diceResult
+    });
+    const newPos = pos + diceResult;
 
-    this.props.recordDiceLog(diceResult)
+    this.props.recordDiceLog(diceResult);
 
     /**
      * GAME LOGIC
      **/
     if (newPos > 100) {
-      this.props.logMessage(`Hang in there Player ${id}`)
-      this.props.changePlayer()
+      this.props.logMessage(`Hang in there Player ${id}`);
+      this.props.changePlayer();
     } else if (newPos == 100) {
-      this.props.movePlayer(newPos)
-      this.props.endGame()
+      this.props.movePlayer(newPos);
+      this.props.endGame();
     } else {
-      this.props.movePlayer(newPos)
+      this.props.movePlayer(newPos);
       this.props.logMessage(
         `Player ${id} moved from  block ${pos} to block ${newPos}. ${
-          diceResult === 6 ? "**SIX**" : ""
+          diceResult === 6 ? '**SIX**' : ''
         }`
-      )
+      );
 
-      this._checkSnakeBiteorLadderJump(newPos)
-      this._resolveOccupancyOverload()
+      this._checkSnakeBiteorLadderJump(newPos);
+      this._resolveOccupancyOverload();
 
       if (diceResult === 6 && persistence < 3) {
-        this.props.enableDice()
-        this.props.setPlayerPersistence(persistence + 1)
+        this.props.enableDice();
+        this.props.setPlayerPersistence(persistence + 1);
       } else {
-        this.props.changePlayer()
-        this.props.setPlayerPersistence(1)
+        this.props.changePlayer();
+        this.props.setPlayerPersistence(1);
       }
     }
   }
@@ -169,28 +164,28 @@ class Game extends React.Component {
       players: {
         current: { id },
       },
-    } = this.props.game
-    const snakeStartPosList = snakes.map(s => s.startPos)
-    const ladderStartPosList = ladders.map(l => l.startPos)
+    } = this.props.game;
+    const snakeStartPosList = snakes.map(s => s.startPos);
+    const ladderStartPosList = ladders.map(l => l.startPos);
 
     if (snakeStartPosList.indexOf(playerPos) !== -1) {
       /* busted */
-      const snake = snakes.filter(s => s.startPos === playerPos)[0]
-      this.props.movePlayer(snake.endPos)
-      this.props.addSnakeBite()
+      const snake = snakes.filter(s => s.startPos === playerPos)[0];
+      this.props.movePlayer(snake.endPos);
+      this.props.addSnakeBite();
       this.props.logMessage(
         `A snake ate Player ${id} at ${playerPos}, moved to block ${snake.endPos}`
-      )
+      );
     }
 
     if (ladderStartPosList.indexOf(playerPos) !== -1) {
       /* got wings */
-      const ladder = ladders.filter(l => l.startPos === playerPos)[0]
-      this.props.movePlayer(ladder.endPos)
-      this.props.addLadderHike()
+      const ladder = ladders.filter(l => l.startPos === playerPos)[0];
+      this.props.movePlayer(ladder.endPos);
+      this.props.addLadderHike();
       this.props.logMessage(
         `Player ${id} found Ladder at ${playerPos}, moved to block ${ladder.endPos}`
-      )
+      );
     }
   }
 
@@ -199,29 +194,29 @@ class Game extends React.Component {
       const {
         grid: { occupancy },
         players: { all },
-      } = this.props.game
+      } = this.props.game;
       const boxesWithMoreThanOneOccupants = Object.keys(occupancy).filter(
         box => occupancy[box] > 1
-      )
+      );
       for (let box of boxesWithMoreThanOneOccupants) {
-        const playersWithinBox = all.filter(player => player.pos == box)
-        let count = 0
+        const playersWithinBox = all.filter(player => player.pos == box);
+        let count = 0;
         for (let player of playersWithinBox) {
-          this.props.changePlayerPositionInBox(player.id, count++)
+          this.props.changePlayerPositionInBox(player.id, count++);
         }
       }
-    })
+    });
   }
 
   _addNewPlayer() {
-    this.props.addNewPlayer()
-    this._resolveOccupancyOverload()
+    this.props.addNewPlayer();
+    this._resolveOccupancyOverload();
   }
 }
 
 const mapStateToProps = state => ({
   game: state.game,
-})
+});
 
 export default connect(
   mapStateToProps,
@@ -240,4 +235,4 @@ export default connect(
     restartGame,
     redraw,
   }
-)(Game)
+)(Game);

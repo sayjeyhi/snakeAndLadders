@@ -1,15 +1,15 @@
-import React from "react"
-import { Line } from "react-konva"
-import { getPlayerCoordinates } from "./../../selectors/utils"
-import { GRAY } from "./../../selectors/variables"
+import React from 'react';
+import { Line } from 'react-konva';
+import { getPlayerCoordinates } from './../../selectors/utils';
+import { GRAY } from './../../selectors/variables';
 
 const Ladder = props => {
   const {
     ladder: { startPos, endPos },
     grid,
-  } = props
-  const { x: startX, y: startY } = getPlayerCoordinates(startPos, grid)
-  const { x: endX, y: endY } = getPlayerCoordinates(endPos, grid)
+  } = props;
+  const { x: startX, y: startY } = getPlayerCoordinates(startPos, grid);
+  const { x: endX, y: endY } = getPlayerCoordinates(endPos, grid);
 
   return (
     <>
@@ -28,7 +28,7 @@ const Ladder = props => {
         dash={[20, 5]}
       />
     </>
-  )
-}
+  );
+};
 
-export default Ladder
+export default Ladder;
