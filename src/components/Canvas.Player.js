@@ -1,7 +1,8 @@
 import React from 'react';
 import { Motion, spring } from 'react-motion';
 import { Circle, Layer, Group, Text } from 'react-konva';
-import { getPlayerCoordinates } from '../config/utils';
+import { getPlayerCoordinates } from './../selectors/utils';
+import { WHITE } from './../selectors/variables';
 
 export default class CanvasPlayer extends React.Component {
 
@@ -21,14 +22,17 @@ export default class CanvasPlayer extends React.Component {
                   x={x}
                   y={y}
                   radius={ isSmallScreen ? 6 : 12}
-                  fill={isCurrent ? styles.white :color }
+                  fill={isCurrent ? WHITE : color }
                   stroke={color}
                   strokeWidth={2}
                   />
                 <Text
-                  x = {isSmallScreen ? x - 2 : x-4} y = {isSmallScreen ? y-3 : y-7}
-                  fill = {isCurrent ? color : styles.white} text = {id}
-                  fontSize = {isSmallScreen ? 6 : 15} fontFamily = {'arial'} />
+                  x = {isSmallScreen ? x - 2 : x-4}
+                  y = {isSmallScreen ? y-3 : y-7}
+                  fill = {isCurrent ? color : WHITE}
+                  text = {id}
+                  fontSize = {isSmallScreen ? 6 : 15}
+                  fontFamily = {'arial'} />
               </Group>
             )
           }

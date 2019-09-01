@@ -1,7 +1,6 @@
 import React from 'react';
 import { Layer, Rect, Group, Text } from 'react-konva';
-import { styles } from '../styles';
-import { GRID_WIDTH, GRID_HEIGHT } from '../config/variables';
+import { GRID_WIDTH, GRID_HEIGHT, GRID_LIGHT, GRID_DARK } from './../selectors/variables';
 
 export default class CanvasGrid extends React.Component {
 
@@ -20,7 +19,7 @@ export default class CanvasGrid extends React.Component {
                   x = {layout[box].x - (boxWidth / 2)} y = {layout[box].y - (boxHeight / 2)}
                   width = {boxWidth} height = {boxHeight}
                   cornerRadius={10}
-                  fill = {isEven ? styles.gridLight : styles.gridDark }
+                  fill = {isEven ? GRID_LIGHT : GRID_DARK }
 
                   scale={{x : 0.92, y: 0.92}}
                   // shadowEnabled={true}

@@ -5,14 +5,14 @@ import {
   GRID_HEIGHT,
   GAME_OVER,
   GAME_ON
-} from '../components/config/variables';
+} from '../selectors/variables';
 
 import {
   getRandomColor,
   getLayout,
   getSnakes,
   getLadders
-} from '../components/config/utils';
+} from '../selectors/utils';
 
 import {
   ADD_NEW_PLAYER,

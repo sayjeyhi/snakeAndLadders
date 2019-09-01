@@ -1,18 +1,17 @@
 import React from 'react';
-import { styles } from '../styles';
-import { MAX_PLAYERS } from '../config/variables';
+import { MAX_PLAYERS } from '../selectors/variables';
 
 export default class Players extends React.Component {
   render () {
     const { all, current: { id }, count:playersCount } = this.props.players;
     return (
       <div>
-      <h1 style={styles.heading}>
+      <h1 className={'heading'}>
         Players
         {
           playersCount < MAX_PLAYERS
           ?
-          <button style={styles.addPlayerCta} onClick={() => { this.props.addNewPlayer() }}>Add</button>
+          <button className={'addPlayerCta'} onClick={() => { this.props.addNewPlayer() }}>Add</button>
           : null
         }
       </h1>
@@ -37,14 +36,13 @@ class Player extends React.Component {
       borderColor: color,
     } : {}
     const playerStyle = {
-      ...styles.player,
       background: color,
       borderColor: color,
       ...highlight
     }
 
     return (
-      <div style={playerStyle}>
+      <div className='player' style={playerStyle}>
         {id}
       </div>
     )

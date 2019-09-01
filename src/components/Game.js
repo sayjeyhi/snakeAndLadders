@@ -13,9 +13,8 @@ import {
   enableDice, setPlayerPersistence, endGame,
   addSnakeBite, addLadderHike, restartGame, redraw
 } from '../actions/GameActions';
-import { GAME_ON, MAX_PLAYERS } from '../config/variables';
-import { delay } from '../config/utils';
-import { styles } from './../styles';
+import { GAME_ON, MAX_PLAYERS } from './../selectors/variables';
+import { delay } from './../selectors/utils';
 import _ from 'lodash';
 
 class Game extends React.Component {
@@ -49,12 +48,12 @@ class Game extends React.Component {
     } = this.props.game;
 
     return (
-      <div style={styles.main}>
+      <div className={'main'}>
         {
           status === GAME_ON
           ?
           <div>
-            <div style={styles.gameBlock}>
+            <div className={'gameBlock'}>
               <Stage
                 width={width}
                 height={height}>
@@ -95,17 +94,17 @@ class Game extends React.Component {
                 }
               </Stage>
             </div>
-            <div style={styles.dataBlock}>
+            <div className={'dataBlock'}>
               <Players players={players} addNewPlayer={this._addNewPlayer.bind(this)}/>
-              <section className="commentry-section" style={styles.commentry}>
+              <section className="commentry-section commentry">
                 {messages[0]}
               </section>
               <section className="dice-section">
                   <button disabled={isDiceDisabled}
                     onClick={this._rollDice.bind(this)}
-                    style={{...styles.diceButton, opacity: isDiceDisabled ? 0.5 : 1}}>
+                    style={{opacity: isDiceDisabled ? 0.5 : 1}}>
                     Roll Dice
-                    <span style={styles.dice} dangerouslySetInnerHTML={this.state.diceOutput} />
+                    <span className={'dice'} dangerouslySetInnerHTML={this.state.diceOutput} />
                   </button>
                 <section id="cubeContainer">
                   <div id="cube" className="show-spining show-4">
@@ -119,10 +118,10 @@ class Game extends React.Component {
                 </section>
               </section>
               <section className="actions-section">
-                <button onClick={() => {this.props.endGame()}} style={styles.endCta}>End</button>
-                <button onClick={() => {this.props.restartGame()}} style={styles.restartCta}>Restart</button>
+                <button onClick={() => {this.props.endGame()}} className="endCta">End</button>
+                <button onClick={() => {this.props.restartGame()}} className="restartCta">Restart</button>
               </section>
-              <section className="sction-rules" style={styles.rules}>
+              <section className="sction-rules rules">
                 * Upto 4 Players can play at a time. <br />
               </section>
             </div>

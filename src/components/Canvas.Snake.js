@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layer, Line, Circle } from 'react-konva';
-import { getPlayerCoordinates } from '../config/utils';
-import { styles } from '../styles';
+import { getPlayerCoordinates } from './../selectors/utils';
+import { RED } from './../selectors/variables';
 
 export default class CanvasSnake extends React.Component {
   render () {
@@ -13,7 +13,7 @@ export default class CanvasSnake extends React.Component {
       <Layer>
         <Line
           points={[startX, startY, endX, endY]}
-          stroke={styles.red}
+          stroke={ RED }
           lineCap="round"
           strokeWidth={4}
           dash={[1, 5]}
@@ -22,7 +22,7 @@ export default class CanvasSnake extends React.Component {
           x={startX}
           y={startY}
           radius={5}
-          fill={styles.red}
+          fill={ RED }
           />
       </Layer>
     )

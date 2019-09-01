@@ -1,6 +1,12 @@
 import React from 'react';
-import SortableResultItem from './results/SortableResultItem';
-import { styles } from '../styles';
+import { Sortable } from 'react-sortable';
+
+const SortableResultItem = Sortable((props) => (
+  <div {...props} className="list-item">{props.children}</div>
+));
+
+
+
 
 export default class Results extends React.Component {
 
@@ -12,15 +18,16 @@ export default class Results extends React.Component {
     }
   }
 
+
   updateState (obj) {
     this.setState(obj);
   }
 
   render () {
     return (
-      <section className="results-section" style={styles.results}>
-        <h1 style={styles.heading}>Results</h1>
-        <div style={styles.inlineBlock} className="list">
+      <section className="results-section results">
+        <h1 className={"heading"}>Results</h1>
+        <div className="list inlineBlock">
         {
           this.state.data.map((playerStat, i) => {
             const { id, pos, color, path, diceLog, snakeBites, ladderHikes } = playerStat;
@@ -32,7 +39,7 @@ export default class Results extends React.Component {
                 draggingIndex={this.state.draggingIndex}
                 sortId={i}
                 outline="list">
-                <div style={styles.resultCard}>
+                <div className={'resultCard'}>
                   <strong>Player {id} </strong>{pos===100 ? '( winner )' : ''}<br />
                   {diceLog.length} Dice thrown, &nbsp;
                   {(diceLog.filter((dice) => dice === 6)).length} Six(s) rolled, &nbsp;
@@ -45,7 +52,7 @@ export default class Results extends React.Component {
         }
         </div>
         <div>
-          <button style={styles.restartCta} onClick={() =>{this.props.startNewGame()}}>
+          <button className={'restartCta'} onClick={() =>{this.props.startNewGame()}}>
             Start new game
           </button>
         </div>
