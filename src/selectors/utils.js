@@ -1,31 +1,70 @@
+import { window } from 'browser-monads';
+
 const getRandomArbitrary = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-export function getRandomName() {
-  const array = ['سنجاب', 'غول', 'اهریمن', 'آتش', 'ببر', 'موس', 'خبیث', 'جنگجو'];
-  return array[getRandomArbitrary(0,array.length-1)];
+let choosedPlayer = 0;
+const playerFaces = [
+  {
+    name: 'دایناسور خبیث',
+    avatar: 1,
+  },
+  {
+    name: 'آهوی متعجب',
+    avatar: 2,
+  },
+  {
+    name: 'غول لش',
+    avatar: 3,
+  },
+  {
+    name: 'مارمولک بدهکار',
+    avatar: 4,
+  },
+  {
+    name: 'کرگدن تنبل',
+    avatar: 5,
+  },
+  {
+    name: 'جینگولک شاد',
+    avatar: 6,
+  },
+  {
+    name: 'شیطان مرموز',
+    avatar: 7,
+  },
+  {
+    name: 'هیولای ناناز',
+    avatar: 8,
+  },
+  {
+    name: 'مار خندان',
+    avatar: 9,
+  },
+];
+export function getRandomFace() {
+  return playerFaces[choosedPlayer++ % playerFaces.length];
 }
-
 let colorIndex = 0;
 export function getRandomColor() {
-  const colorPalette = ['#007ae1', '#ff2d55', '#4cd964', '#ff9500'];
+  const colorPalette = ['#93b3e1', '#ff9ea2', '#a1ff8a', '#ffcd59'];
   return colorPalette[colorIndex++ % 4];
 }
 
 export function getRandomSadEmoji() {
-  const array = ['😤', '🥺', '🤢', '😔', '🥺', '🤢', '😑', '🤬'];
-  return array[getRandomArbitrary(0,array.length-1)];
+  const array = ['😤', '🥺', '🤢', '😔', '🥺', '😑', '🤬'];
+  return array[getRandomArbitrary(0, array.length - 1)];
 }
 
 export function getRandomRegularEmoji() {
-  const array = [ '🤗', '😝', '😌', '🥴', '🤓'];
-  return array[getRandomArbitrary(0,array.length-1)];
+  const array = ['🤗', '😝', '😌', '🥴', '🤓'];
+  return array[getRandomArbitrary(0, array.length - 1)];
 }
 
 export function getRandomExcellentEmoji() {
   const array = ['😍', '😎', '🤩', '😏', '😈'];
-  return array[getRandomArbitrary(0,array.length-1)];
+  return array[getRandomArbitrary(0, array.length - 1)];
 }
 
 export function getLayout(width, height) {
@@ -175,4 +214,32 @@ export function getLadders() {
       endPos: 91,
     },
   ];
+}
+
+export function getGridMeasurement(width, height) {
+  let gutter = 32;
+  width = typeof width === 'undefined' ? window.outerWidth : width;
+  height = typeof height === 'undefined' ? window.outerHeight - 70 : height - 50;
+
+  if(height > 300) {
+    height -= 50;
+  }
+
+
+  // choose height or width based on greater one
+  let usedMeasurement = width;
+  if(width > height){
+    usedMeasurement = height;
+  }
+
+  if (usedMeasurement > 1000) {
+    gutter = 100;
+  } else if (usedMeasurement <= 1000 && usedMeasurement > 700) {
+    gutter = 80;
+  } else if (usedMeasurement <= 700 && usedMeasurement > 400) {
+    gutter = 60;
+  } else {
+    gutter = 10;
+  }
+  return usedMeasurement - gutter;
 }

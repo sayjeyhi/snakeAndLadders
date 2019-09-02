@@ -2,26 +2,29 @@ import React from 'react';
 import avatars from './../images/avatars/avatars';
 import { MAX_PLAYERS } from '../selectors/variables';
 
-
-const Player = (props) => {
+const Player = props => {
   const {
-    player: { id, name,  pos, color },
+    player: { id, name, avatar, color },
     currentPlayerId,
   } = props;
 
   const playerStyle = {
     background: color,
-    borderColor: color
+    borderColor: color,
   };
 
   return (
-    <div data-name={name} className={"player " + (id === currentPlayerId ? 'active' : '')} style={playerStyle}>
-      <img src={ avatars[id-1] } alt={id} />
+    <div
+      data-name={name}
+      className={'player ' + (id === currentPlayerId ? 'active' : '')}
+      style={playerStyle}
+    >
+      <img src={avatars[avatar -1]} alt={name} />
     </div>
   );
-}
+};
 
-const Players = (props) => {
+const Players = props => {
   const {
     all,
     current: { id },
@@ -42,11 +45,11 @@ const Players = (props) => {
             props.addNewPlayer();
           }}
         >
-          +
+          ➕
         </button>
       ) : null}
     </>
   );
-}
+};
 
 export default Players;

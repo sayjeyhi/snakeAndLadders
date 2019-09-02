@@ -9,10 +9,11 @@ import {
 
 import {
   getRandomColor,
-  getRandomName,
+  getRandomFace,
   getLayout,
   getSnakes,
   getLadders,
+  getGridMeasurement,
 } from '../selectors/utils';
 
 import {
@@ -32,7 +33,7 @@ import {
 } from '../actions/GameActions';
 
 const firstPlayerColor = getRandomColor();
-const firstPlayerName = getRandomName();
+const firstPlayerFace = getRandomFace();
 const initialState = {
   status: GAME_ON,
   dice: {
@@ -57,18 +58,17 @@ const initialState = {
     current: {
       id: 1,
       pos: 1,
-      name: firstPlayerName,
       color: firstPlayerColor,
       path: [1],
       diceLog: [],
       boxPosition: -1, //center
       snakeBites: 0,
       ladderHikes: 0,
+      ...firstPlayerFace,
     },
     all: [
       {
         id: 1,
-        name: firstPlayerName,
         pos: 1,
         color: firstPlayerColor,
         path: [1],
@@ -76,6 +76,7 @@ const initialState = {
         boxPosition: -1, //center
         snakeBites: 0,
         ladderHikes: 0,
+        ...firstPlayerFace,
       },
     ],
   },
@@ -283,7 +284,7 @@ export function game(state = initialState, action) {
       let newGrid = {};
       let newWidth = action.width - 64;
       let newHeight = action.height - 64;
-      // newWidth = newWidth > 672 ? newWidth / 2 : newWidth;
+      newWidth = getGridMeasurement(newWidth, newHeight);
       newGrid = {
         layout: getLayout(newWidth, newWidth),
         width: newWidth,
@@ -314,13 +315,13 @@ function _generateNewPlayer(curCount) {
   return {
     id: curCount + 1,
     color: getRandomColor(),
-    name: getRandomName(),
     pos: 1,
     path: [1],
     diceLog: [],
     boxPosition: -1, //center
     snakeBites: 0,
     ladderHikes: 0,
+    ...getRandomFace(),
   };
 }
 

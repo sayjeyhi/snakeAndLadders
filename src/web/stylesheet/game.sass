@@ -1,6 +1,8 @@
 @import "reset"
 @import "fonts"
 
+body
+  background: #f9f9f9
 
 .main
   margin: 0
@@ -10,6 +12,13 @@
   position: relative
   text-align: right
   direction: rtl
+
+.flexCenter
+  display: flex
+  align-items: center
+  justify-content: center
+  div
+    min-width: 20%
 
 .gameBlock
   display: inline-block
@@ -22,58 +31,86 @@
   top: 0
   background: #fff
   width: 100%
-  height: 40px
-  box-shadow: 0 -3px 12px -5px rgba(0,0,0,0.3)
+  height: 55px
+  display: flex
+  box-shadow: 0 -9px 28px -5px rgba(0, 0, 0, 0.3)
   section
-    display: inline-block
+    display: flex
+    outline: none
     position: relative
-    font-familt: 'SDF', 'BYekan', sans-serif
+    font-family: 'SDF', 'BYekan', sans-serif
     height: 100%
-  .seperatorTitle
+  .separatorTitle
     position: absolute
     right: 0
     top: 0
-    width: 25px
+    min-width: 2px
     height: 100%
     overflow: visible
-    background: #ccc
+    background-image: linear-gradient(to bottom, #8f0ba7 0%, #4568DC 100%)
     .rightTitle
       transform: rotate(-90deg)
       display: block
       height: 100%
-      font-size: 11px
+      font-size: 12px
       font-family: 'BYekan', sans-serif
       color: #fff
       position: relative
-      right: -6px
-      text-align: right 
+      right: -14px
+      text-align: right
 
   .playersPart
-    padding-right: 30px
-   
+    padding-right: 35px
+  .rollDicePart
+    align-items: start
+    button
+      opacity: 1
+      background-image: linear-gradient(to right, rgb(228, 77, 38) 0%, rgb(241, 101, 41) 51%, rgb(228, 77, 38) 100%)
+      padding: 24px 25px 24px 18px
+      text-transform: uppercase
+      transition: all 0.5s ease 0s
+      background-size: 200%
+      color: white
+      box-shadow: rgba(206, 69, 21, 0.68) 0px 10px 34px -5px
+      border-bottom-right-radius: 10px
+      border-bottom-left-radius: 10px
+      display: block
+      font-size: 20px
+      position: relative
+      border: none
+      text-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px !important
+      border-top-left-radius: 0px !important
+      border-top-right-radius: 0px !important
+      font-family: 'BYekan','SDF',sans-serif
+  .messagePart
+    align-items: center
+    padding-right: 10px
+    padding-left: 12px
+    font-size: 12px
+    max-width: 180px
+    overflow: hidden
+    text-overflow: ellipsis
+    line-height: 20px
 
 
-.btn
-  border: none
-  border-radius: 5px
-  background: #ccc
-  color: #fff
-  box-shadow: 0 -3px 10px -2px rgba(0,0,0,.5)
 
 .player,
 .addPlayer
   border-radius: 8px
   border: none
+  outline: none
   width: 35px
-  height: 35px
+  height: 80%
+  margin-left: 4px
+  min-width: 45px
   text-align: center
-  line-height: 40px
-  vertical-align: middle
-  position: relative
   font-size: 14px
+  position: relative
+  vertical-align: middle
+  top: 4px
   color: #fff
-  transform: scale(0.9)
-  transition: transform ease-in-out 0.3s
+  transform: scale(0.82)
+  transition: transform ease-in-out 0.3s, -webkit-transform ease-in-out 0.3s
   display: inline-block
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1)
   &:hover
@@ -82,52 +119,124 @@
     content: attr(data-name)
     background: #000
     font-family: 'BYekan', sans-serif
+    font-size: 12px
     position: absolute
-    bottom: -25px
+    bottom: 0
     left: 50%
-    transform: scale(0) translate(-50%, 0)
-    display: block;
-    line-height: 20px;
-    padding: 0px 12px;
+    outline: none
+    transform: scale(0)
+    margin-left: -48px
+    display: block
+    line-height: 22px
+    padding: 0 12px
+    min-width: 96px
     border-radius: 5px
-    transition: transform ease-in-out 0.3s,bottom ease-in-out 0.3s
+    transition: transform ease-in-out 300ms,bottom ease-in-out 300ms
+    transition-delay: 500ms
+    z-index: 99999
   &:hover:after
-    transform: scale(1) translate(-50%, 0)
+    transform: scale(1)
+    bottom: -30px
+    transition-duration: 0.18s
+    transition-delay: 0
 
 .player.active
   background: #fff !important
-  box-shadow: 0 3px 12px -3px #b7fd0d
   transform: scale(1)
+  border: 2px solid
+
+
+.konvajs-content
+  width: 100% !important
+  min-height: 85vh
+  canvas
+    left: 50% !important
+    top: 50% !important
+    transform: translate(-50%, -50%)
+
+.btn
+  border: none
+  border-radius: 5px
+  cursor: pointer
+  outline: none
+  background: #ccc
+  color: #fff
+  box-shadow: 0 -3px 10px -2px rgba(0,0,0,.5)
+
+.btn.big
+  background-image: linear-gradient(to right, #0cebeb 0%, #20e3b2 51%, #0cebeb 100%)
+  margin: 10px
+  padding: 20px 70px 20px 30px
+  text-align: center
+  text-transform: uppercase
+  transition: 0.5s
+  background-size: 200% auto
+  color: white
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2) !important
+  box-shadow: 0 0 20px #eee
+  border-radius: 10px
+  display: block
+  font-size: 20px
+  position: relative
+  .icon
+    position: absolute
+    top: 50%
+    right: 15px
+    transform: translate(0, -20%)
+    font-size: 38px
 
 
 .diceButton
   font-size: 16px
   border: none
-  
 
-
-
-
-.results
-  padding: 0 32px
-
-.inlineBlock
-  display: inline-block
+.topSpace
+  height: 80px
 
 .resultCard
-  margin-right: 16px
-  margin-bottom: 16px
-  padding: 16px 24px
-  border-radius: 4px
+  margin-right: 0
+  margin-bottom: 26px
+  margin-top: 26px
+  padding: 0 24px 16px 24px
+  border-radius: 15px
   line-height: 1.6rem
-  box-shadow: 0 3px 12px rgba(0, 0, 0, .1)
-  border: 1px solid #ccc
+  box-shadow: 0 9px 59px -17px #1be591a1
   display: inline-block
+  width: calc(100% - 15px)
   background: #fff
-  font-familt: 'SDF', 'BYekan', sans-serif
+  font-family: 'SDF', 'BYekan', sans-serif !important
   color: #222
   font-size: 16px
   cursor: move
+  border: 3px solid #1be591
+  strong
+    font-family: 'SDF', 'BYekan', sans-serif !important
+    font-size: 24px
+    margin: 0
+    padding: 10px
+    text-align: center
+    text-transform: uppercase
+    transition: 0.5s
+    background-size: 200% auto
+    color: white
+    box-shadow: 0 5px 20px -3px #fdc40b
+    border-radius: 10px
+    display: block
+    position: relative
+    top: -24px
+    background-image: linear-gradient(to right, #F7971E 0%, #e8c312 51%, #F7971E 100%)
+
+.resultsHolder
+  div
+    min-width: 25%
+    flex-basis: 25%
+
+  div:nth-child(2n)
+    .resultCard
+      border: 3px solid #B06AB3
+    strong
+      background-image: linear-gradient(to right, #4568DC 0%, #B06AB3 51%, #4568DC 100%)
+      box-shadow: 0 5px 20px -3px #B06AB3
 
 .rules
   margin-top: 16px

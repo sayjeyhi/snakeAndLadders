@@ -1,5 +1,5 @@
 {
-  "name": "SnakeAndLaddersStarter",
+  "name": "snake_and_ladders",
   "private": true,
   "description": "Just a react redux snake and ladder",
   "version": "0.1.0",
@@ -30,7 +30,8 @@
     "redux": "latest",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "lodash": "latest"
+    "lodash": "latest",
+    "canvas": "latest"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

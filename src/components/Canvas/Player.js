@@ -1,13 +1,13 @@
 import React from 'react';
 import { Motion, spring } from 'react-motion';
-import { Circle, Group, Text } from 'react-konva';
+import { Circle, Group, Image, Text} from 'react-konva';
 import { getPlayerCoordinates } from './../../selectors/utils';
 import { WHITE } from './../../selectors/variables';
 
 const Player = props => {
   const {
     player: { color, id, pos, boxPosition },
-    current: { id: currentPlayerId },
+    current: { id: currentPlayerId, avatar },
     grid: {
       box: { width },
     },
@@ -30,6 +30,14 @@ const Player = props => {
               stroke={color}
               strokeWidth={2}
             />
+
+            {/*<Image*/}
+            {/*  x={x}*/}
+            {/*  y={y}*/}
+            {/*  width={100}*/}
+            {/*  height={100}*/}
+            {/*  image={image}*/}
+            {/*/>*/}
             <Text
               x={isSmallScreen ? x - 2 : x - 4}
               y={isSmallScreen ? y - 3 : y - 7}

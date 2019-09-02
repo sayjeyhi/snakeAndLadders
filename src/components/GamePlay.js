@@ -12,11 +12,7 @@ const GamePlay = props => {
     grid,
     snakes,
     ladders,
-    players: {
-      all,
-      current: { color: currentPlayerColor },
-      current,
-    },
+    players: { all, current },
   } = props.game;
   return (
     <div className={'gameBlock'}>

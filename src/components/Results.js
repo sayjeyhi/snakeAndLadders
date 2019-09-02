@@ -24,10 +24,9 @@ export default class Results extends React.Component {
     return (
       <section className="results-section results">
         <h1 className={'heading'}>نتایج مسابقه</h1>
-        <div className="list inlineBlock">
+        <div className="flexCenter resultsHolder">
           {this.state.data.map((playerStat, i) => {
             const {
-              id,
               name,
               pos,
               color,
@@ -48,24 +47,24 @@ export default class Results extends React.Component {
                 <div className={'resultCard'}>
                   <strong>{name}</strong>
                   {pos === 100 ? '( winner )' : ''}
-                  <br />
-                  {diceLog.length} پرتاب تاس, &nbsp;
-                  {diceLog.filter(dice => dice === 6).length} پرتاب جایزه‌دار,
-                  &nbsp;
-                  {snakeBites} برخورد با مار, &nbsp;
+                  {' '}
+                  {diceLog.length} پرتاب تاس &nbsp;<br/>
+                  {diceLog.filter(dice => dice === 6).length} پرتاب جایزه‌دار <br/>
+                  {snakeBites} برخورد با مار &nbsp;<br/>
                   {ladderHikes} جهش با نردبان
                 </div>
               </SortableResultItem>
             );
           })}
         </div>
-        <div>
+        <div className={'flexCenter'}>
           <button
-            className={'btn'}
+            className={'btn big'}
             onClick={() => {
               this.props.startNewGame();
             }}
           >
+            <span className={'icon'}>🚀</span>
             شروع بازی جدید
           </button>
         </div>
