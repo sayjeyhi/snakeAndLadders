@@ -1,6 +1,6 @@
 import { window } from 'browser-monads';
 
-const gridMeasurement = window.outerWidth - 32;
+const gridMeasurement = window.outerWidth - 64;
 export const GRID_WIDTH = gridMeasurement;
 export const GRID_HEIGHT = gridMeasurement;
 export const BOX_WIDTH = GRID_WIDTH / 10;

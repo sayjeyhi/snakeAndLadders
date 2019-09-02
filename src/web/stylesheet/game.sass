@@ -14,7 +14,7 @@
 .gameBlock
   display: inline-block
   vertical-align: top
-  width: calc(100% - 120px)
+  width: 100%
 
 .dataBlock
   position: fixed
@@ -26,40 +26,86 @@
   box-shadow: 0 -3px 12px -5px rgba(0,0,0,0.3)
   section
     display: inline-block
+    position: relative
+    font-familt: 'SDF', 'BYekan', sans-serif
+    height: 100%
+  .seperatorTitle
+    position: absolute
+    right: 0
+    top: 0
+    width: 25px
+    height: 100%
+    overflow: visible
+    background: #ccc
+    .rightTitle
+      transform: rotate(-90deg)
+      display: block
+      height: 100%
+      font-size: 11px
+      font-family: 'BYekan', sans-serif
+      color: #fff
+      position: relative
+      right: -6px
+      text-align: right 
+
+  .playersPart
+    padding-right: 30px
+   
 
 
-.player
-  border-radius: 100%
-  border: 2px solid
+.btn
+  border: none
+  border-radius: 5px
+  background: #ccc
+  color: #fff
+  box-shadow: 0 -3px 10px -2px rgba(0,0,0,.5)
+
+.player,
+.addPlayer
+  border-radius: 8px
+  border: none
   width: 35px
   height: 35px
   text-align: center
   line-height: 40px
   vertical-align: middle
+  position: relative
   font-size: 14px
   color: #fff
+  transform: scale(0.9)
+  transition: transform ease-in-out 0.3s
   display: inline-block
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1)
+  &:hover
+    transform: scale(1)
+  &:after
+    content: attr(data-name)
+    background: #000
+    font-family: 'BYekan', sans-serif
+    position: absolute
+    bottom: -25px
+    left: 50%
+    transform: scale(0) translate(-50%, 0)
+    display: block;
+    line-height: 20px;
+    padding: 0px 12px;
+    border-radius: 5px
+    transition: transform ease-in-out 0.3s,bottom ease-in-out 0.3s
+  &:hover:after
+    transform: scale(1) translate(-50%, 0)
+
+.player.active
+  background: #fff !important
+  box-shadow: 0 3px 12px -3px #b7fd0d
+  transform: scale(1)
 
 
 .diceButton
   font-size: 16px
   border: none
-  border-radius: 4px
-  text-transform: uppercase
-  padding: 32px
-  width: 100%
-  letter-spacing: 4px
-  color: #fff
-  cursor: pointer
-  margin: 32px 0 0
-  background: linear-gradient(141deg, #204d7b 0%, #204d7b 51%, #1781a9 75%)
+  
 
-.dice
-  font-size: 48px
-  margin-left: 12px
-  vertical-align: -8px
-  line-height: 16px
+
 
 
 .results
@@ -78,6 +124,7 @@
   border: 1px solid #ccc
   display: inline-block
   background: #fff
+  font-familt: 'SDF', 'BYekan', sans-serif
   color: #222
   font-size: 16px
   cursor: move

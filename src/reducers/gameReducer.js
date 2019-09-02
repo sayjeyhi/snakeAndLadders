@@ -9,6 +9,7 @@ import {
 
 import {
   getRandomColor,
+  getRandomName,
   getLayout,
   getSnakes,
   getLadders,
@@ -31,6 +32,7 @@ import {
 } from '../actions/GameActions';
 
 const firstPlayerColor = getRandomColor();
+const firstPlayerName = getRandomName();
 const initialState = {
   status: GAME_ON,
   dice: {
@@ -55,6 +57,7 @@ const initialState = {
     current: {
       id: 1,
       pos: 1,
+      name: firstPlayerName,
       color: firstPlayerColor,
       path: [1],
       diceLog: [],
@@ -65,6 +68,7 @@ const initialState = {
     all: [
       {
         id: 1,
+        name: firstPlayerName,
         pos: 1,
         color: firstPlayerColor,
         path: [1],
@@ -277,8 +281,8 @@ export function game(state = initialState, action) {
 
     case REDRAW:
       let newGrid = {};
-      let newWidth = action.width - 32;
-      let newHeight = action.height - 32;
+      let newWidth = action.width - 64;
+      let newHeight = action.height - 64;
       // newWidth = newWidth > 672 ? newWidth / 2 : newWidth;
       newGrid = {
         layout: getLayout(newWidth, newWidth),
@@ -310,6 +314,7 @@ function _generateNewPlayer(curCount) {
   return {
     id: curCount + 1,
     color: getRandomColor(),
+    name: getRandomName(),
     pos: 1,
     path: [1],
     diceLog: [],

@@ -65,8 +65,10 @@ class Game extends React.Component {
             <GamePlay />
 
             <div className={'dataBlock'}>
-              <span className={'rightTitle'}>نفرات</span>
               <section className="playersPart">
+                <div className={'seperatorTitle'}>
+                  <span className={'rightTitle'}>نفرات</span>
+                </div>
                 <Players
                   players={players}
                   addNewPlayer={this._addNewPlayer.bind(this)}
@@ -117,7 +119,7 @@ class Game extends React.Component {
   _rollDice() {
     const {
       players: {
-        current: { id, pos },
+        current: { id, pos , name },
         persistence,
       },
     } = this.props.game;
@@ -133,7 +135,7 @@ class Game extends React.Component {
      * GAME LOGIC
      **/
     if (newPos > 100) {
-      this.props.logMessage(` بازیکن شماره ${id} منتظر عدد مناسب ! 😨 `);
+      this.props.logMessage(` ${name} منتظر عدد مناسب ! 😨 `);
       this.props.changePlayer();
     } else if (newPos == 100) {
       this.props.movePlayer(newPos);
@@ -156,7 +158,7 @@ class Game extends React.Component {
           break;
       }
       this.props.logMessage(
-        `بازیکن  ${id} ${diceResult} آورد ${emoji} ${
+        ` ${name} ${diceResult} آورد ${emoji} ${
           diceResult === 6 ? '***' : ''
         }`
       );
@@ -179,7 +181,7 @@ class Game extends React.Component {
       snakes,
       ladders,
       players: {
-        current: { id },
+        current: { id , name },
       },
     } = this.props.game;
     const snakeStartPosList = snakes.map(s => s.startPos);
@@ -191,7 +193,7 @@ class Game extends React.Component {
       this.props.movePlayer(snake.endPos);
       this.props.addSnakeBite();
       this.props.logMessage(
-        `بازیکن  ${id} با مار برخورد کرد ${getRandomSadEmoji()}`
+        ` ${name} با مار برخورد کرد ${getRandomSadEmoji()}`
       );
     }
 
@@ -201,7 +203,7 @@ class Game extends React.Component {
       this.props.movePlayer(ladder.endPos);
       this.props.addLadderHike();
       this.props.logMessage(
-        `بازیکن  ${id} از نردبان بالا رفت  ${getRandomExcellentEmoji()}`
+        ` ${name} از نردبان بالا رفت  ${getRandomExcellentEmoji()}`
       );
     }
   }

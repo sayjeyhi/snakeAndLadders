@@ -2,6 +2,11 @@ const getRandomArbitrary = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
+export function getRandomName() {
+  const array = ['سنجاب', 'غول', 'اهریمن', 'آتش', 'ببر', 'موس', 'خبیث', 'جنگجو'];
+  return array[getRandomArbitrary(0,array.length-1)];
+}
+
 let colorIndex = 0;
 export function getRandomColor() {
   const colorPalette = ['#007ae1', '#ff2d55', '#4cd964', '#ff9500'];
@@ -100,6 +105,7 @@ export function delay(callback) {
   return setTimeout(callback, 300);
 }
 
+// todo : generate
 export function getSnakes() {
   return [
     {
@@ -135,6 +141,7 @@ export function getSnakes() {
   ];
 }
 
+// todo : generate
 export function getLadders() {
   return [
     {

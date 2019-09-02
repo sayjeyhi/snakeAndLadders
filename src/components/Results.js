@@ -28,6 +28,7 @@ export default class Results extends React.Component {
           {this.state.data.map((playerStat, i) => {
             const {
               id,
+              name,
               pos,
               color,
               path,
@@ -45,7 +46,7 @@ export default class Results extends React.Component {
                 outline="list"
               >
                 <div className={'resultCard'}>
-                  <strong>بازیکن {id} </strong>
+                  <strong>{name}</strong>
                   {pos === 100 ? '( winner )' : ''}
                   <br />
                   {diceLog.length} پرتاب تاس, &nbsp;
