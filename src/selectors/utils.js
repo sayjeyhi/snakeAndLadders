@@ -306,7 +306,7 @@ export function getPointsInfo(startX, startY, endX, endY) {
 
   return {
     dx,
-    dy: dy + 6cd 0,
+    dy: dy + 60,
     angel: (inRads * 180 / Math.PI) + 95
   }
 }
