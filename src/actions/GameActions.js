@@ -6,7 +6,6 @@ export const RECORD_DICE_LOG = 'RECORD_DICE_LOG';
 export const LOG_MESSAGE = 'LOG_MESSAGE';
 export const SET_PLAYER_PERSISTENCE = 'SET_PLAYER_PERSISTENCE';
 export const ROLL_DICE = 'ROLL_DICE';
-export const ROLL_DICE_END = 'ROLL_DICE_END';
 export const ENABLE_DICE = 'ENABLE_DICE';
 export const END_GAME = 'END_GAME';
 export const ADD_SNAKE_BITE = 'ADD_SNAKE_BITE';

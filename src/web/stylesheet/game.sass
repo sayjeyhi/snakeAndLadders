@@ -256,13 +256,22 @@ body
 #cubeContainer
   width: 100px
   height: 100px
-  position: relative
   margin: 30px auto
   -webkit-perspective: 1000px
   -moz-perspective: 1000px
   -o-perspective: 1000px
   perspective: 1000px
   cursor: pointer
+  position: fixed
+  left: 50%
+  top: 50%
+  z-index: 999
+  opacity: 0
+  transition: transform ease-in-out 0.3s,opacity ease-in-out 0.3s
+  transform: translate(-50%,-50%) scale(1.4)
+  &.show
+    opacity: 0.8
+    transform: translate(-50%,-50%) scale(1)
 
 #cube
   width: 100%
@@ -272,10 +281,10 @@ body
   -moz-transform-style: preserve-3d
   -o-transform-style: preserve-3d
   transform-style: preserve-3d
-  -webkit-transition: -webkit-transform .5s
-  -moz-transition: -moz-transform .5s
-  -o-transition: -o-transform .5s
-  transition: transform .5s
+  -webkit-transition: -webkit-transform .24s
+  -moz-transition: -moz-transform .24s
+  -o-transition: -o-transform .24s
+  transition: transform .24s
   figure
     display: block
     position: absolute
@@ -323,7 +332,7 @@ body
     -moz-transform: rotateX(-90deg) translateZ(50px)
     -o-transform: rotateX(-90deg) translateZ(50px)
     transform: rotateX(-90deg) translateZ(50px)
-  &.show-spining
+  &.show-spinning
     -webkit-transform: translateZ(-50px) rotateX(20deg) rotateY(20deg)
     -moz-transform: translateZ(-50px) rotateX(20deg) rotateY(20deg)
     -o-transform: translateZ(-50px) rotateX(20deg) rotateY(20deg)

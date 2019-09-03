@@ -19,7 +19,7 @@ const Player = props => {
       className={'player ' + (id === currentPlayerId ? 'active' : '')}
       style={playerStyle}
     >
-      <img src={avatars[avatar -1]} alt={name} />
+      <img src={avatars[avatar - 1]} alt={name} />
     </div>
   );
 };

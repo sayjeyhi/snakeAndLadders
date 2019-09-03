@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Line, Image } from 'react-konva';
-import { getPlayerCoordinates, getImage, getPointsInfo } from './../../selectors/utils';
-import { GRAY } from './../../selectors/variables';
-import ladderSvg from './../../images/svg/ladder.svg';
+import { Image } from 'react-konva';
+import {
+  getPlayerCoordinates,
+  getImage,
+  getPointsInfo,
+} from './../../selectors/utils';
+import ladderSvgSmall from './../../images/ladders/small.png';
+import ladderSvgMedium from './../../images/ladders/medium.png';
+import ladderSvgBig from './../../images/ladders/big.png';
 
 const Ladder = props => {
   const {
@@ -11,43 +16,36 @@ const Ladder = props => {
   } = props;
   const { x: startX, y: startY } = getPlayerCoordinates(startPos, grid);
   const { x: endX, y: endY } = getPlayerCoordinates(endPos, grid);
+  const { distance, angel, size } = getPointsInfo(startX, startY, endX, endY);
 
-  let [imageSource, setImageSource] = useState();
+  // todo : make this custom hook for Player,Snake,Ladder
+  let [ladderSource, setLadderSource] = useState();
   useEffect(() => {
-    getImage(ladderSvg)
-      .then((image) => setImageSource(image))
-  } , []);
+    let ladderFile;
+    switch (size) {
+      case 'big':
+        ladderFile = ladderSvgBig;
+        break;
+      case 'medium':
+        ladderFile = ladderSvgMedium;
+        break;
+      default:
+        ladderFile = ladderSvgSmall;
+    }
 
-
-  const { dx, dy, angel } = getPointsInfo(startX, startY, endX, endY);
+    // load ladder source
+    getImage(ladderFile).then(image => setLadderSource(image));
+  }, []);
 
   return (
-    <>
-      <Image
-        x={startX}
-        y={startY}
-        width={20}
-        height={dy}
-        rotation={angel}
-        image={ imageSource }
-      />
-      
-
-      {/* <Line
-        points={[startX, startY, endX, endY]}
-        stroke={GRAY}
-        lineCap="round"
-        strokeWidth={2}
-        dash={[20, 5]}
-      /> */}
-      <Line
-        points={[startX - 6, startY, endX - 6, endY]}
-        stroke={GRAY}
-        lineCap="round"
-        strokeWidth={2}
-        dash={[20, 5]}
-      />
-    </>
+    <Image
+      x={startX + 9}
+      y={startY + 5}
+      width={30}
+      height={distance}
+      rotation={angel}
+      image={ladderSource}
+    />
   );
 };
 

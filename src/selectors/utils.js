@@ -1,11 +1,20 @@
 import { window } from 'browser-monads';
-import { func } from 'prop-types';
 import { loadImage } from 'canvas';
 
+/**
+ * Get random number
+ * @param min
+ * @param max
+ * @returns {number}
+ */
 const getRandomArbitrary = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
+/**
+ * Players default data
+ * @type {number}
+ */
 let choosedPlayer = 0;
 const playerFaces = [
   {
@@ -44,16 +53,32 @@ const playerFaces = [
     name: 'مار خندان',
     avatar: 9,
   },
-];
+].sort((a, b) => 0.5 - Math.random());
+
+/**
+ * Get random player face
+ * @returns {Object}
+ */
 export function getRandomFace() {
   return playerFaces[choosedPlayer++ % playerFaces.length];
 }
+
 let colorIndex = 0;
+
+/**
+ * Random color
+ * @returns {string}
+ */
 export function getRandomColor() {
   const colorPalette = ['#a6c0e1', '#ffbaab', '#a1ff8a', '#ffcd59'];
   return colorPalette[colorIndex++ % 4];
 }
 
+/**
+ * Give random emoji based on range
+ * @param range
+ * @returns {string}
+ */
 export function getRandomEmoji(range) {
   let emoji;
   switch (range) {
@@ -75,21 +100,38 @@ export function getRandomEmoji(range) {
   return emoji;
 }
 
+/**
+ * Gives random sad emoji
+ * @returns {*}
+ */
 export function getRandomSadEmoji() {
   const array = ['😤', '🥺', '🤢', '😔', '🥺', '😑', '🤬'];
   return array[getRandomArbitrary(0, array.length - 1)];
 }
 
+/**
+ * Gives random emoji
+ * @returns {string}
+ */
 export function getRandomRegularEmoji() {
   const array = ['🤗', '😝', '😌', '🥴', '🤓'];
   return array[getRandomArbitrary(0, array.length - 1)];
 }
 
+/**
+ * Gives happy emoji
+ * @returns {string}
+ */
 export function getRandomExcellentEmoji() {
   const array = ['😍', '😎', '🤩', '😏', '😈'];
   return array[getRandomArbitrary(0, array.length - 1)];
 }
 
+/**
+ * Give me layout
+ * @param width
+ * @param height
+ */
 export function getLayout(width, height) {
   const gridWidth = width;
   const gridHeight = height;
@@ -122,7 +164,14 @@ export function getLayout(width, height) {
   return layout;
 }
 
-export function getPlayerCoordinates(pos, grid, boxPosition) {
+/**
+ * Player coordinates in rect
+ * @param pos
+ * @param grid
+ * @param boxPosition
+ * @returns {{x: number, y: *}|{x: *, y: *}|{x: *, y: number}|{x: number, y: number}}
+ */
+export function getPlayerCoordinates(pos, grid, boxPosition = 4) {
   const {
     layout,
     box: { width, height },
@@ -163,12 +212,20 @@ export function getPlayerCoordinates(pos, grid, boxPosition) {
   }
 }
 
+/**
+ * Delay 300ms
+ * @param callback
+ * @returns {number}
+ */
 export function delay(callback) {
   return setTimeout(callback, 300);
 }
 
-
-// todo : generate
+/**
+ * Snakes and there placement
+ * todo : generate instead of static
+ * @returns {*[]}
+ */
 export function getSnakes() {
   return [
     {
@@ -204,7 +261,11 @@ export function getSnakes() {
   ];
 }
 
-// todo : generate
+/**
+ * todo : generate
+ * Ladders and there placement
+ * @returns {*[]}
+ */
 export function getLadders() {
   return [
     {
@@ -220,7 +281,7 @@ export function getLadders() {
     {
       id: 3,
       startPos: 28,
-      endPos: 84,
+      endPos: 75,
     },
     {
       id: 4,
@@ -240,6 +301,12 @@ export function getLadders() {
   ];
 }
 
+/**
+ * Get grids measurement to make responsive rects
+ * @param width
+ * @param height
+ * @returns {number}
+ */
 export function getGridMeasurement(width, height) {
   let gutter = 32;
   width = typeof width === 'undefined' ? window.outerWidth : width;
@@ -274,39 +341,42 @@ export function getGridMeasurement(width, height) {
   return finalMeasurement > 300 ? finalMeasurement : 300;
 }
 
-
-export async function getImage(src, cb) {
+/**
+ * Load image source to use in canvas
+ * @param src
+ * @returns {Promise<Image | void>}
+ */
+export async function getImage(src) {
+  console.log(src);
   return loadImage(src)
-    .then((image) => image)
+    .then(image => image)
     .catch(err => console.log(err));
-};
-
-
+}
 
 /**
  * Get two points angel and destination
- * @param {*} startX 
- * @param {*} startY 
- * @param {*} endX 
- * @param {*} endY 
+ * @param {*} startX
+ * @param {*} startY
+ * @param {*} endX
+ * @param {*} endY
  */
 export function getPointsInfo(startX, startY, endX, endY) {
-
-
   const dx = startX - endX;
   const dy = startY - endY;
+  const distance = Math.sqrt(dx * dx + dy * dy);
 
   let inRads = Math.atan2(dy, dx);
 
-  // We need to map to coord system when 0 degree is at 3 O'clock, 270 at 12 O'clock
-  if (inRads < 0)
-      inRads = Math.abs(inRads);
-  // else
-  //     inRads = 2 * Math.PI - inRads;
+  let size = 'small';
+  if (distance > 180) {
+    size = 'big';
+  } else if (dy <= 180 && dy > 100) {
+    size = 'medium';
+  }
 
   return {
-    dx,
-    dy: dy + 60,
-    angel: (inRads * 180 / Math.PI) + 95
-  }
+    size,
+    distance,
+    angel: (inRads * 180) / Math.PI + 90,
+  };
 }

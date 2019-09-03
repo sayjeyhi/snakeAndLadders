@@ -46,11 +46,13 @@ export default class Results extends React.Component {
               >
                 <div className={'resultCard'}>
                   <strong>{name}</strong>
-                  {pos === 100 ? '( برنده 🎲 )' : ''}
-                  {' '}
-                  {diceLog.length} پرتاب تاس &nbsp;<br/>
-                  {diceLog.filter(dice => dice === 6).length} پرتاب جایزه‌دار <br/>
-                  {snakeBites} برخورد با مار &nbsp;<br/>
+                  {pos === 100 ? '( برنده 🎲 )' : ''} {diceLog.length} پرتاب تاس
+                  &nbsp;
+                  <br />
+                  {diceLog.filter(dice => dice === 6).length} پرتاب جایزه‌دار{' '}
+                  <br />
+                  {snakeBites} برخورد با مار &nbsp;
+                  <br />
                   {ladderHikes} جهش با نردبان
                 </div>
               </SortableResultItem>

@@ -1,26 +1,34 @@
-import React, { useEffect, useState } from "react";
-import Players from "./Players";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import Players from './Players';
+import { connect } from 'react-redux';
 import {
   addLadderHike,
-  addNewPlayer, addSnakeBite,
+  addNewPlayer,
+  addSnakeBite,
   changePlayer,
-  changePlayerPositionInBox, enableDice, endGame,
-  getRollDiceResult, logMessage,
+  enableDice,
+  endGame,
+  getRollDiceResult,
+  logMessage,
   restartGame,
-  movePlayer, recordDiceLog, setPlayerPersistence
+  movePlayer,
+  recordDiceLog,
+  setPlayerPersistence, MOVE_PLAYER
 } from "../actions/GameActions";
-import { delay, getRandomExcellentEmoji, getRandomEmoji, getRandomSadEmoji } from "../selectors/utils";
+import {
+  getRandomExcellentEmoji,
+  getRandomEmoji,
+  getRandomSadEmoji,
+} from '../selectors/utils';
+import Dice from "./Dice";
 
-const GamePanel = (props) => {
+const GamePanel = props => {
   const {
     dice: { disabled: isDiceDisabled },
     players: { all },
     players,
     messages,
   } = props.game;
-
-
 
   const _rollDice = () => {
     const {
@@ -33,9 +41,11 @@ const GamePanel = (props) => {
     } = props.game;
 
     const diceResult = getRollDiceResult();
+    props.recordDiceLog(diceResult);
+
     const newPos = pos + diceResult;
 
-    props.recordDiceLog(diceResult);
+
 
     /**
      * GAME LOGIC
@@ -80,10 +90,8 @@ const GamePanel = (props) => {
         }
       }
 
-      _resolveOccupancyOverload();
-
       if (diceResult === 6 && persistence < 3) {
-        props.enableDice();
+        setTimeout(props.enableDice , 700);
         props.setPlayerPersistence(persistence + 1);
       } else {
         props.changePlayer();
@@ -92,84 +100,57 @@ const GamePanel = (props) => {
     }
   };
 
-
-  const _resolveOccupancyOverload = () => {
-    delay(() => {
-      const {
-        grid: { occupancy },
-        players: { all },
-      } = props.game;
-      const boxesWithMoreThanOneOccupants = Object.keys(occupancy).filter(
-        box => occupancy[box] > 1
-      );
-      for (let box of boxesWithMoreThanOneOccupants) {
-        const playersWithinBox = all.filter(player => player.pos === box);
-        let count = 0;
-        for (let player of playersWithinBox) {
-          props.changePlayerPositionInBox(player.id, count++);
-        }
-      }
-    });
-  };
-
-  const _addNewPlayer = () => {
-    props.addNewPlayer();
-    _resolveOccupancyOverload();
-  };
-
-
   return (
-    <div className={'dataBlock'}>
-      <section className="playersPart">
-        <div className={'separatorTitle'}>
-          <span className={'rightTitle'}>نفرات</span>
-        </div>
-        <Players
-          players={players}
-          addNewPlayer={_addNewPlayer.bind(this)}
-        />
-      </section>
-      <section className={'rollDicePart'}>
-        <button
-          className={'rollDiceBtn ' + (isDiceDisabled ? 'disabled' : '')}
-          disabled={isDiceDisabled}
-          onClick={!isDiceDisabled ? _rollDice.bind(this) : () => {} }
-        >
-          پرتاب تاس
-        </button>
-      </section>
-      <section className="messagePart">
-        {messages[0]}
-      </section>
+    <>
+      <Dice rolling={isDiceDisabled} />
+      <div className={'dataBlock'}>
+        <section className="playersPart">
+          <div className={'separatorTitle'}>
+            <span className={'rightTitle'}>نفرات</span>
+          </div>
+          <Players players={players} addNewPlayer={props.addNewPlayer} />
+        </section>
+        <section className={'rollDicePart'}>
+          <button
+            className={'rollDiceBtn ' + (isDiceDisabled ? 'disabled' : '')}
+            disabled={isDiceDisabled}
+            onClick={!isDiceDisabled ? _rollDice.bind(this) : () => {}}
+          >
+            پرتاب تاس
+          </button>
+        </section>
+        <section className="messagePart">{messages[0]}</section>
 
-      <section className="controlPart">
-        <button onClick={props.restartGame} className="btn">
-          ریستارت
-        </button>
-        <button onClick={props.endGame} className="btn">
-          پایان
-        </button>
-      </section>
-    </div>
+        <section className="controlPart">
+          <button onClick={props.restartGame} className="btn">
+            ریستارت
+          </button>
+          <button onClick={props.endGame} className="btn">
+            پایان
+          </button>
+        </section>
+      </div>
+    </>
   );
 };
 
-
-const mapStateToProps = (state) => ({
-  game: state.game
+const mapStateToProps = state => ({
+  game: state.game,
 });
 
-export default connect(mapStateToProps,   {
-  addNewPlayer,
-  movePlayer,
-  changePlayer,
-  changePlayerPositionInBox,
-  recordDiceLog,
-  logMessage,
-  enableDice,
-  setPlayerPersistence,
-  restartGame,
-  endGame,
-  addSnakeBite,
-  addLadderHike
-})(GamePanel);
+export default connect(
+  mapStateToProps,
+  {
+    addNewPlayer,
+    movePlayer,
+    changePlayer,
+    recordDiceLog,
+    logMessage,
+    enableDice,
+    setPlayerPersistence,
+    restartGame,
+    endGame,
+    addSnakeBite,
+    addLadderHike,
+  }
+)(GamePanel);

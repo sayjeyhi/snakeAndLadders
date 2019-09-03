@@ -7,5 +7,5 @@
 // You can delete this file if you're not using it
 
 exports.onClientEntry = () => {
-    require('babel-polyfill')
-}
+  require('babel-polyfill');
+};

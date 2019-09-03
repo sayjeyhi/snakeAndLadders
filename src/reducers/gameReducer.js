@@ -14,6 +14,9 @@ import {
   getSnakes,
   getLadders,
   getGridMeasurement,
+  getRandomEmoji,
+  getRandomSadEmoji,
+  getRandomExcellentEmoji,
 } from '../selectors/utils';
 
 import {
@@ -25,22 +28,21 @@ import {
   LOG_MESSAGE,
   SET_PLAYER_PERSISTENCE,
   ROLL_DICE,
-  ROLL_DICE_END,
   ENABLE_DICE,
   END_GAME,
   ADD_SNAKE_BITE,
   ADD_LADDER_HIKE,
   RESTART_GAME,
-  REDRAW
-} from "../actions/GameActions";
+  REDRAW,
+  getRollDiceResult,
+} from '../actions/GameActions';
 
 const firstPlayerColor = getRandomColor();
 const firstPlayerFace = getRandomFace();
 const initialState = {
   status: GAME_ON,
   dice: {
-    disabled: false,
-    rolling: false
+    disabled: false
   },
   messages: ['برای شروع بازی ، تاس بیندازید ✌'],
   grid: {
@@ -114,10 +116,6 @@ export function game(state = initialState, action) {
 
       return {
         ...state,
-        dice: {
-          ...state.dice,
-          disabled: true,
-        },
         grid: {
           ...state.grid,
           occupancy: {
@@ -148,10 +146,11 @@ export function game(state = initialState, action) {
       };
 
     case CHANGE_PLAYER:
-      var nextPlayer = _getNextPlayer(state.players);
+      const nextPlayer = _getNextPlayer(state.players);
       return {
         ...state,
         dice: {
+          ...state.dice,
           disabled: false,
         },
         players: {
@@ -163,6 +162,10 @@ export function game(state = initialState, action) {
     case RECORD_DICE_LOG:
       return {
         ...state,
+        dice: {
+          disabled: true,
+          result: action.diceResult,
+        },
         players: {
           ...state.players,
           all: state.players.all.map(p => {
@@ -221,14 +224,15 @@ export function game(state = initialState, action) {
         },
       };
 
-    case ROLL_DICE:
-      return {
-        ...state,
-        dice: {
-          ...state.dice,
-          disabled: true
-        }
-      };
+    // case ROLL_DICE:
+    //   const diceResult = _rollDice(state);
+    //   return {
+    //     ...state,
+    //     dice: {
+    //       ...state.dice,
+    //       disabled: true
+    //     }
+    //   };
 
     case ENABLE_DICE:
       return {
