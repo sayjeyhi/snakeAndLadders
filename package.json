@@ -5,7 +5,9 @@
   "version": "0.1.0",
   "author": "Jafar rezaei <jafar.rezaei.ard@gmail.com>",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "browser-monads": "^1.0.0",
+    "canvas": "^2.6.0",
     "gatsby": "^2.15.1",
     "gatsby-image": "^2.2.15",
     "gatsby-plugin-manifest": "^2.2.12",
@@ -18,6 +20,7 @@
     "gatsby-source-filesystem": "^2.1.18",
     "gatsby-transformer-sharp": "^2.2.12",
     "konva": "^4.0.5",
+    "lodash": "latest",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
@@ -29,9 +32,7 @@
     "react-sortable": "^2.0.0",
     "redux": "latest",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "lodash": "latest",
-    "canvas": "latest"
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

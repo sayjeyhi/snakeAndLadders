@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { GAME_START, GAME_ON } from './../selectors/variables';
 import { redraw, restartGame } from "../actions/GameActions";
 
+import StartPage from "./StartPage";
 import GamePanel from "./GamePanel";
 import GamePlay from './GamePlay';
 import Results from './Results';
@@ -29,7 +30,7 @@ const Game = (props) => {
     <div className={'main'} >
       { status === GAME_START ? (
         <Fragment>
-          <div>مرحله آغازین بازی</div>
+          <StartPage />
         </Fragment>
         ) : (
         status === GAME_ON ? (

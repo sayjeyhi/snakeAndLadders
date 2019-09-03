@@ -1,4 +1,6 @@
 import { window } from 'browser-monads';
+import { func } from 'prop-types';
+import { loadImage } from 'canvas';
 
 const getRandomArbitrary = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
@@ -270,4 +272,41 @@ export function getGridMeasurement(width, height) {
   console.log(finalMeasurement);
   // check minimum measurement
   return finalMeasurement > 300 ? finalMeasurement : 300;
+}
+
+
+export async function getImage(src, cb) {
+  return loadImage(src)
+    .then((image) => image)
+    .catch(err => console.log(err));
+};
+
+
+
+/**
+ * Get two points angel and destination
+ * @param {*} startX 
+ * @param {*} startY 
+ * @param {*} endX 
+ * @param {*} endY 
+ */
+export function getPointsInfo(startX, startY, endX, endY) {
+
+
+  const dx = startX - endX;
+  const dy = startY - endY;
+
+  let inRads = Math.atan2(dy, dx);
+
+  // We need to map to coord system when 0 degree is at 3 O'clock, 270 at 12 O'clock
+  if (inRads < 0)
+      inRads = Math.abs(inRads);
+  // else
+  //     inRads = 2 * Math.PI - inRads;
+
+  return {
+    dx,
+    dy: dy + 6cd 0,
+    angel: (inRads * 180 / Math.PI) + 95
+  }
 }
