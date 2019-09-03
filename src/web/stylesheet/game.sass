@@ -181,12 +181,18 @@ body
   display: block
   font-size: 20px
   position: relative
+  &.orange
+    background-image: linear-gradient(to right, #F7971E 0%, #FFD200  51%, #F7971E  100%)
+  &.black
+    background-image: linear-gradient(to right, #41295a 0%, #2F0743  51%, #41295a  100%)
   .icon
     position: absolute
     top: 50%
     right: 15px
     transform: translate(0, -20%)
     font-size: 38px
+  &:hover
+    background-size: 50%
 
 
 .diceButton

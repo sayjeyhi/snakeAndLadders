@@ -1,7 +1,9 @@
 import React from 'react';
+import { restartGame } from "../actions/GameActions";
 import logo from './../images/logo.png';
+import { connect } from "react-redux";
 
-const StartPage = () => {
+const StartPage = (props) => {
   return (
     <div className="wholeHolder">
       <div className="flexCenter logo">
@@ -9,14 +11,14 @@ const StartPage = () => {
       </div>
 
       <div className="flexCenter level">
-        <div class="chooseLine">
-          <span data-title="ساده" class="step step_one active">
+        <div className="chooseLine">
+          <span data-title="ساده" className="step step_one active">
             🤗
           </span>
-          <span data-title="متوسط" class="step step_two">
+          <span data-title="متوسط" className="step step_two">
             😎
           </span>
-          <span data-title="حرفه ای" class="step step_three">
+          <span data-title="حرفه ای" className="step step_three">
             😈
           </span>
         </div>
@@ -25,21 +27,21 @@ const StartPage = () => {
 
       <div className={'flexCenter'}>
         <button
-          className={'btn big'}
+          className={'btn big orange'}
           onClick={() => {
-            this.props.startNewGame();
+            props.restartGame();
           }}
         >
           <span className={'icon'}>🚀</span>
           شروع بازی
         </button>
         <button
-          className={'btn big disabled'}
+          className={'btn big black'}
           onClick={() => {
-            this.props.startNewGame();
+            alert('Coming Soon')
           }}
         >
-          <span className={'icon'}></span>
+          <span className={'icon'}>🏆</span>
           بازی آنلاین(به زودی)
         </button>
       </div>
@@ -47,4 +49,6 @@ const StartPage = () => {
   );
 };
 
-export default StartPage;
+
+
+export default connect(null , { restartGame })(StartPage);

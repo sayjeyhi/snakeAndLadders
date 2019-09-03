@@ -12,6 +12,3 @@ export const MAX_PLAYERS = 5;
 
 export const GRID_LIGHT = 'rgba(57,181,255,0.64)';
 export const GRID_DARK = 'rgba(255,121,117,0.35)';
-export const GRAY = '#131313';
-export const WHITE = '#fff';
-export const RED = '#ff0000';

@@ -4,8 +4,8 @@ import {
   GRID_WIDTH,
   GRID_HEIGHT,
   GAME_OVER,
-  GAME_ON,
-} from '../selectors/variables';
+  GAME_ON, GAME_START
+} from "../selectors/variables";
 
 import {
   getRandomColor,
@@ -40,7 +40,7 @@ import {
 const firstPlayerColor = getRandomColor();
 const firstPlayerFace = getRandomFace();
 const initialState = {
-  status: GAME_ON,
+  status: GAME_START,
   dice: {
     disabled: false
   },
@@ -294,7 +294,10 @@ export function game(state = initialState, action) {
       };
 
     case RESTART_GAME:
-      return initialState;
+      return {
+        ...initialState,
+        status: GAME_ON
+      };
 
     case REDRAW:
       let newGrid = {};

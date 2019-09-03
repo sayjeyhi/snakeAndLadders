@@ -13,7 +13,7 @@ import {
   restartGame,
   movePlayer,
   recordDiceLog,
-  setPlayerPersistence, MOVE_PLAYER
+  setPlayerPersistence
 } from "../actions/GameActions";
 import {
   getRandomExcellentEmoji,
@@ -25,7 +25,6 @@ import Dice from "./Dice";
 const GamePanel = props => {
   const {
     dice: { disabled: isDiceDisabled },
-    players: { all },
     players,
     messages,
   } = props.game;
