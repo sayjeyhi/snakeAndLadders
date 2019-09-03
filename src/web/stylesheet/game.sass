@@ -32,6 +32,7 @@ body
   background: #fff
   width: 100%
   height: 55px
+  z-index: 999
   display: flex
   box-shadow: 0 -9px 28px -5px rgba(0, 0, 0, 0.3)
   section
@@ -87,15 +88,18 @@ body
     padding-right: 10px
     padding-left: 12px
     font-size: 12px
-    max-width: 180px
+    max-width: 50%
     overflow: hidden
     text-overflow: ellipsis
     line-height: 20px
+  .controlPart
+    margin-right: auto
 
 
 
 .player,
-.addPlayer
+.addPlayer,
+.btn
   border-radius: 8px
   border: none
   outline: none
@@ -114,7 +118,7 @@ body
   display: inline-block
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1)
   &:hover
-    transform: scale(1)
+    transform: scale(0.9)
   &:after
     content: attr(data-name)
     background: #000
@@ -138,7 +142,6 @@ body
     transform: scale(1)
     bottom: -30px
     transition-duration: 0.18s
-    transition-delay: 0
 
 .player.active
   background: #fff !important
@@ -161,8 +164,8 @@ body
   outline: none
   background: #ccc
   color: #fff
-  box-shadow: 0 -3px 10px -2px rgba(0,0,0,.5)
-
+  width: auto
+  margin: 0
 .btn.big
   background-image: linear-gradient(to right, #0cebeb 0%, #20e3b2 51%, #0cebeb 100%)
   margin: 10px
@@ -398,10 +401,18 @@ body
   -webkit-animation-iteration-count: infinite
   -webkit-animation-timing-function: linear
 
+// make responsive result
 @media screen and (max-width: 700px)
   .gameRow > span
     font-size: 11px
 
 @media screen and (max-width: 600px)
+  .messagePart
+    display: none !important
+  .controlPart
+    position: absolute
+    left: 0
+  .konvajs-content
+    min-height: 70vh !important
   .gameRow > span
     font-size: 10px

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Motion, spring } from 'react-motion';
-import { Circle, Group, Image, Text} from 'react-konva';
+import { Circle, Group, Text} from 'react-konva';
 import { getPlayerCoordinates } from './../../selectors/utils';
 import { WHITE } from './../../selectors/variables';
 
 const Player = props => {
   const {
     player: { color, id, pos, boxPosition },
-    current: { id: currentPlayerId, avatar },
+    current: { id: currentPlayerId },
     grid: {
       box: { width },
     },
@@ -19,14 +19,14 @@ const Player = props => {
 
   return (
     <>
-      <Motion style={{ x: spring(x), y: spring(y) }}>
+      <Motion style={{ x: spring(x), y: spring(y), stiffness: 211, dumping: 33 }}>
         {({ x, y }) => (
           <Group>
             <Circle
               x={x}
               y={y}
               radius={isSmallScreen ? 6 : 12}
-              fill={isCurrent ? WHITE : color}
+              fill={isCurrent ? WHITE : '#000'}
               stroke={color}
               strokeWidth={2}
             />
@@ -41,7 +41,7 @@ const Player = props => {
             <Text
               x={isSmallScreen ? x - 2 : x - 4}
               y={isSmallScreen ? y - 3 : y - 7}
-              fill={isCurrent ? color : WHITE}
+              fill={isCurrent ? '#000' : '#fff62e'}
               text={id}
               fontSize={isSmallScreen ? 6 : 15}
               fontFamily={'arial'}

@@ -46,7 +46,7 @@ export default class Results extends React.Component {
               >
                 <div className={'resultCard'}>
                   <strong>{name}</strong>
-                  {pos === 100 ? '( winner )' : ''}
+                  {pos === 100 ? '( برنده 🎲 )' : ''}
                   {' '}
                   {diceLog.length} پرتاب تاس &nbsp;<br/>
                   {diceLog.filter(dice => dice === 6).length} پرتاب جایزه‌دار <br/>

@@ -48,8 +48,29 @@ export function getRandomFace() {
 }
 let colorIndex = 0;
 export function getRandomColor() {
-  const colorPalette = ['#93b3e1', '#ff9ea2', '#a1ff8a', '#ffcd59'];
+  const colorPalette = ['#a6c0e1', '#ffbaab', '#a1ff8a', '#ffcd59'];
   return colorPalette[colorIndex++ % 4];
+}
+
+export function getRandomEmoji(range) {
+  let emoji;
+  switch (range) {
+    case 1:
+    case 2:
+      emoji = getRandomSadEmoji();
+      break;
+    case 3:
+    case 4:
+      emoji = getRandomRegularEmoji();
+      break;
+    case 5:
+    case 6:
+      emoji = getRandomExcellentEmoji();
+      break;
+    default:
+      emoji = getRandomSadEmoji();
+  }
+  return emoji;
 }
 
 export function getRandomSadEmoji() {
@@ -144,6 +165,7 @@ export function delay(callback) {
   return setTimeout(callback, 300);
 }
 
+
 // todo : generate
 export function getSnakes() {
   return [
@@ -219,16 +241,16 @@ export function getLadders() {
 export function getGridMeasurement(width, height) {
   let gutter = 32;
   width = typeof width === 'undefined' ? window.outerWidth : width;
-  height = typeof height === 'undefined' ? window.outerHeight - 70 : height - 50;
+  height =
+    typeof height === 'undefined' ? window.outerHeight - 70 : height - 50;
 
-  if(height > 300) {
+  if (height > 350) {
     height -= 50;
   }
 
-
   // choose height or width based on greater one
   let usedMeasurement = width;
-  if(width > height){
+  if (width > height) {
     usedMeasurement = height;
   }
 
@@ -236,10 +258,16 @@ export function getGridMeasurement(width, height) {
     gutter = 100;
   } else if (usedMeasurement <= 1000 && usedMeasurement > 700) {
     gutter = 80;
-  } else if (usedMeasurement <= 700 && usedMeasurement > 400) {
-    gutter = 60;
+  } else if (usedMeasurement <= 700 && usedMeasurement > 600) {
+    gutter = 70;
+  } else if (usedMeasurement <= 600 && usedMeasurement > 400) {
+    gutter = 50;
   } else {
     gutter = 10;
   }
-  return usedMeasurement - gutter;
+  const finalMeasurement = usedMeasurement - gutter;
+
+  console.log(finalMeasurement);
+  // check minimum measurement
+  return finalMeasurement > 300 ? finalMeasurement : 300;
 }

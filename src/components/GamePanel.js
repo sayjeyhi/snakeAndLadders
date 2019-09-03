@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Players from "./Players";
 import { connect } from "react-redux";
 import {
@@ -7,9 +7,10 @@ import {
   changePlayer,
   changePlayerPositionInBox, enableDice, endGame,
   getRollDiceResult, logMessage,
-  movePlayer, recordDiceLog, redraw, restartGame, setPlayerPersistence
+  restartGame,
+  movePlayer, recordDiceLog, setPlayerPersistence
 } from "../actions/GameActions";
-import { delay, getRandomExcellentEmoji, getRandomRegularEmoji, getRandomSadEmoji } from "../selectors/utils";
+import { delay, getRandomExcellentEmoji, getRandomEmoji, getRandomSadEmoji } from "../selectors/utils";
 
 const GamePanel = (props) => {
   const {
@@ -19,18 +20,19 @@ const GamePanel = (props) => {
     messages,
   } = props.game;
 
-  let [ diceNumber, setDiceNumber ] = useState(4);
+
+
   const _rollDice = () => {
     const {
+      snakes,
+      ladders,
       players: {
         current: { pos, name },
         persistence,
       },
     } = props.game;
+
     const diceResult = getRollDiceResult();
-    setDiceNumber({
-      diceNumber: diceResult
-    });
     const newPos = pos + diceResult;
 
     props.recordDiceLog(diceResult);
@@ -46,28 +48,38 @@ const GamePanel = (props) => {
       props.endGame();
     } else {
       props.movePlayer(newPos);
-      let emoji = getRandomRegularEmoji();
-      switch (diceResult) {
-        case 1:
-        case 2:
-          emoji = getRandomSadEmoji();
-          break;
-        case 3:
-        case 4:
-          emoji = getRandomRegularEmoji();
-          break;
-        case 5:
-        case 6:
-          emoji = getRandomExcellentEmoji();
-          break;
-        default:
-          emoji = getRandomSadEmoji();
-      }
+      let emoji = getRandomEmoji(diceResult);
+
       props.logMessage(
         ` ${name} ${diceResult} آورد ${emoji} ${diceResult === 6 ? '***' : ''}`
       );
 
-      _checkSnakeBiteorLadderJump(newPos);
+      // Check snake and ladders hit
+      {
+        const snakeStartPosList = snakes.map(s => s.startPos);
+        const ladderStartPosList = ladders.map(l => l.startPos);
+
+        if (snakeStartPosList.indexOf(newPos) !== -1) {
+          /* busted */
+          const snake = snakes.filter(s => s.startPos === newPos)[0];
+          props.movePlayer(snake.endPos);
+          props.addSnakeBite();
+          props.logMessage(
+            ` ${name} ${diceResult} آورد و با مار برخورد کرد ${getRandomSadEmoji()}`
+          );
+        }
+
+        if (ladderStartPosList.indexOf(newPos) !== -1) {
+          /* got wings */
+          const ladder = ladders.filter(l => l.startPos === newPos)[0];
+          props.movePlayer(ladder.endPos);
+          props.addLadderHike();
+          props.logMessage(
+            ` ${name} ${diceResult} آورد و از نردبان بالا رفت  ${getRandomExcellentEmoji()}`
+          );
+        }
+      }
+
       _resolveOccupancyOverload();
 
       if (diceResult === 6 && persistence < 3) {
@@ -80,37 +92,6 @@ const GamePanel = (props) => {
     }
   };
 
-  const _checkSnakeBiteorLadderJump = (playerPos) => {
-    const {
-      snakes,
-      ladders,
-      players: {
-        current: { name },
-      },
-    } = props.game;
-    const snakeStartPosList = snakes.map(s => s.startPos);
-    const ladderStartPosList = ladders.map(l => l.startPos);
-
-    if (snakeStartPosList.indexOf(playerPos) !== -1) {
-      /* busted */
-      const snake = snakes.filter(s => s.startPos === playerPos)[0];
-      props.movePlayer(snake.endPos);
-      props.addSnakeBite();
-      props.logMessage(
-        ` ${name} با مار برخورد کرد ${getRandomSadEmoji()}`
-      );
-    }
-
-    if (ladderStartPosList.indexOf(playerPos) !== -1) {
-      /* got wings */
-      const ladder = ladders.filter(l => l.startPos === playerPos)[0];
-      props.movePlayer(ladder.endPos);
-      props.addLadderHike();
-      props.logMessage(
-        ` ${name} از نردبان بالا رفت  ${getRandomExcellentEmoji()}`
-      );
-    }
-  };
 
   const _resolveOccupancyOverload = () => {
     delay(() => {
@@ -136,6 +117,7 @@ const GamePanel = (props) => {
     _resolveOccupancyOverload();
   };
 
+
   return (
     <div className={'dataBlock'}>
       <section className="playersPart">
@@ -151,7 +133,7 @@ const GamePanel = (props) => {
         <button
           className={'rollDiceBtn ' + (isDiceDisabled ? 'disabled' : '')}
           disabled={isDiceDisabled}
-          onClick={_rollDice.bind(this)}
+          onClick={!isDiceDisabled ? _rollDice.bind(this) : () => {} }
         >
           پرتاب تاس
         </button>
@@ -159,22 +141,13 @@ const GamePanel = (props) => {
       <section className="messagePart">
         {messages[0]}
       </section>
-      <section className="dicePart">
-        <button
-          onClick={() => {
-            props.endGame();
-          }}
-          className="btn"
-        >
-          پایان
-        </button>
-        <button
-          onClick={() => {
-            props.restartGame();
-          }}
-          className="btn"
-        >
+
+      <section className="controlPart">
+        <button onClick={props.restartGame} className="btn">
           ریستارت
+        </button>
+        <button onClick={props.endGame} className="btn">
+          پایان
         </button>
       </section>
     </div>
@@ -195,9 +168,8 @@ export default connect(mapStateToProps,   {
   logMessage,
   enableDice,
   setPlayerPersistence,
+  restartGame,
   endGame,
   addSnakeBite,
-  addLadderHike,
-  restartGame,
-  redraw,
+  addLadderHike
 })(GamePanel);

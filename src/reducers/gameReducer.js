@@ -24,13 +24,15 @@ import {
   RECORD_DICE_LOG,
   LOG_MESSAGE,
   SET_PLAYER_PERSISTENCE,
+  ROLL_DICE,
+  ROLL_DICE_END,
   ENABLE_DICE,
   END_GAME,
   ADD_SNAKE_BITE,
   ADD_LADDER_HIKE,
   RESTART_GAME,
-  REDRAW,
-} from '../actions/GameActions';
+  REDRAW
+} from "../actions/GameActions";
 
 const firstPlayerColor = getRandomColor();
 const firstPlayerFace = getRandomFace();
@@ -38,8 +40,9 @@ const initialState = {
   status: GAME_ON,
   dice: {
     disabled: false,
+    rolling: false
   },
-  messages: ['برای شروع تاس بیندازید'],
+  messages: ['برای شروع بازی ، تاس بیندازید ✌'],
   grid: {
     layout: getLayout(GRID_WIDTH, GRID_HEIGHT),
     width: GRID_WIDTH,
@@ -216,6 +219,15 @@ export function game(state = initialState, action) {
           ...state.players,
           persistence: action.persistence,
         },
+      };
+
+    case ROLL_DICE:
+      return {
+        ...state,
+        dice: {
+          ...state.dice,
+          disabled: true
+        }
       };
 
     case ENABLE_DICE:
