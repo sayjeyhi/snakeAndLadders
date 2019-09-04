@@ -26,15 +26,7 @@ export default class Results extends React.Component {
         <h1 className={'heading'}>نتایج مسابقه</h1>
         <div className="flexCenter resultsHolder">
           {this.state.data.map((playerStat, i) => {
-            const {
-              name,
-              pos,
-              color,
-              path,
-              diceLog,
-              snakeBites,
-              ladderHikes,
-            } = playerStat;
+            const { name, pos, diceLog, snakeBites, ladderHikes } = playerStat;
             return (
               <SortableResultItem
                 key={i}
@@ -66,7 +58,9 @@ export default class Results extends React.Component {
               this.props.startNewGame();
             }}
           >
-            <span className={'icon'}>🚀</span>
+            <span className={'icon'} role="img" aria-label="easy">
+              🚀
+            </span>
             شروع بازی جدید
           </button>
         </div>

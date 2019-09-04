@@ -4,8 +4,9 @@ import {
   GRID_WIDTH,
   GRID_HEIGHT,
   GAME_OVER,
-  GAME_ON, GAME_START
-} from "../selectors/variables";
+  GAME_ON,
+  GAME_START,
+} from '../selectors/variables';
 
 import {
   getRandomColor,
@@ -14,10 +15,7 @@ import {
   getSnakes,
   getLadders,
   getGridMeasurement,
-  getRandomEmoji,
-  getRandomSadEmoji,
-  getRandomExcellentEmoji,
-} from '../selectors/utils';
+} from '../selectors/utility';
 
 import {
   ADD_NEW_PLAYER,
@@ -26,7 +24,7 @@ import {
   CHANGE_PLAYER_POSITION_IN_BOX,
   RECORD_DICE_LOG,
   LOG_MESSAGE,
-  SET_PLAYER_PERSISTENCE,
+  SET_PLAYER_PERSISTENCE, // eslint-disable-next-line
   ROLL_DICE,
   ENABLE_DICE,
   END_GAME,
@@ -34,7 +32,6 @@ import {
   ADD_LADDER_HIKE,
   RESTART_GAME,
   REDRAW,
-  getRollDiceResult,
 } from '../actions/GameActions';
 
 const firstPlayerColor = getRandomColor();
@@ -42,7 +39,7 @@ const firstPlayerFace = getRandomFace();
 const initialState = {
   status: GAME_START,
   dice: {
-    disabled: false
+    disabled: false,
   },
   messages: ['برای شروع بازی ، تاس بیندازید ✌'],
   grid: {
@@ -296,7 +293,7 @@ export function game(state = initialState, action) {
     case RESTART_GAME:
       return {
         ...initialState,
-        status: GAME_ON
+        status: GAME_ON,
       };
 
     case REDRAW:

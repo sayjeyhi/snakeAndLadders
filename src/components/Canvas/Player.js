@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Image, Group, Rect } from 'react-konva';
 import { Motion, spring } from 'react-motion';
-import { getImage, getPlayerCoordinates } from './../../selectors/utils';
+import { getImage, getPlayerCoordinates } from './../../selectors/utility';
 import avatars from './../../images/avatars/avatars';
 
 const Player = props => {
@@ -17,8 +17,11 @@ const Player = props => {
   const isCurrent = id === currentPlayerId;
 
   let [playerSource, setPlayerSource] = useState();
+
   useEffect(() => {
     getImage(avatars[avatar - 1]).then(image => setPlayerSource(image));
+
+    /* eslint-disable-next-line */
   }, []);
 
   const minifiedWidth = width - 10;

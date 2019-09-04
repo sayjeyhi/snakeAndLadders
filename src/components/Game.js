@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { GAME_START, GAME_ON } from './../selectors/variables';
 import { redraw, restartGame } from '../actions/GameActions';
@@ -23,6 +23,8 @@ const Game = props => {
     // redraw canvas when resize the page
     const redrawFn = e => redraw(e.target.outerWidth, e.target.outerHeight);
     window.addEventListener('resize', _.debounce(e => redrawFn(e), 500));
+
+    /* eslint-disable-next-line */
   }, []);
 
   return (

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Players from './Players';
+import Dice from './Dice';
 import { connect } from 'react-redux';
 import {
   addLadderHike,
@@ -13,14 +14,13 @@ import {
   restartGame,
   movePlayer,
   recordDiceLog,
-  setPlayerPersistence
-} from "../actions/GameActions";
+  setPlayerPersistence,
+} from '../actions/GameActions';
 import {
   getRandomExcellentEmoji,
   getRandomEmoji,
   getRandomSadEmoji,
-} from '../selectors/utils';
-import Dice from "./Dice";
+} from '../selectors/utility';
 
 const GamePanel = props => {
   const {
@@ -43,8 +43,6 @@ const GamePanel = props => {
     props.recordDiceLog(diceResult);
 
     const newPos = pos + diceResult;
-
-
 
     /**
      * GAME LOGIC
@@ -90,7 +88,7 @@ const GamePanel = props => {
       }
 
       if (diceResult === 6 && persistence < 3) {
-        setTimeout(props.enableDice , 700);
+        setTimeout(props.enableDice, 700);
         props.setPlayerPersistence(persistence + 1);
       } else {
         props.changePlayer();
@@ -118,7 +116,10 @@ const GamePanel = props => {
             پرتاب تاس
           </button>
         </section>
-        <section className="messagePart">{messages[0]}</section>
+        <section
+          className="messagePart"
+          dangerouslySetInnerHTML={{ __html: messages[0] }}
+        />
 
         <section className="controlPart">
           <button onClick={props.restartGame} className="btn">

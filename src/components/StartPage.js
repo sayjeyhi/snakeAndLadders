@@ -1,9 +1,9 @@
 import React from 'react';
-import { restartGame } from "../actions/GameActions";
+import { restartGame } from '../actions/GameActions';
 import logo from './../images/logo.png';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-const StartPage = (props) => {
+const StartPage = props => {
   return (
     <div className="wholeHolder">
       <div className="flexCenter logo">
@@ -12,13 +12,28 @@ const StartPage = (props) => {
 
       <div className="flexCenter level">
         <div className="chooseLine">
-          <span data-title="ساده" className="step step_one active">
+          <span
+            data-title="ساده"
+            role="img"
+            aria-label="easy"
+            className="step step_one active"
+          >
             🤗
           </span>
-          <span data-title="متوسط" className="step step_two">
+          <span
+            data-title="متوسط"
+            role="img"
+            aria-label="medium"
+            className="step step_two"
+          >
             😎
           </span>
-          <span data-title="حرفه ای" className="step step_three">
+          <span
+            data-title="حرفه ای"
+            role="img"
+            aria-label="perfect"
+            className="step step_three"
+          >
             😈
           </span>
         </div>
@@ -32,16 +47,20 @@ const StartPage = (props) => {
             props.restartGame();
           }}
         >
-          <span className={'icon'}>🚀</span>
+          <span className={'icon'} role="img" aria-label="easy">
+            🚀
+          </span>
           شروع بازی
         </button>
         <button
           className={'btn big black'}
           onClick={() => {
-            alert('Coming Soon')
+            alert('Coming Soon');
           }}
         >
-          <span className={'icon'}>🏆</span>
+          <span className={'icon'} role="img" aria-label="easy">
+            🏆
+          </span>
           بازی آنلاین(به زودی)
         </button>
       </div>
@@ -49,6 +68,7 @@ const StartPage = (props) => {
   );
 };
 
-
-
-export default connect(null , { restartGame })(StartPage);
+export default connect(
+  null,
+  { restartGame }
+)(StartPage);

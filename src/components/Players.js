@@ -45,7 +45,9 @@ const Players = props => {
             props.addNewPlayer();
           }}
         >
-          ➕
+          <span role="img" aria-label="emoji">
+            ➕
+          </span>
         </button>
       ) : null}
     </>

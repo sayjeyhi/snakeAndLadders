@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-konva';
+import ladderSvgSmall from './../../images/svg/ladder.png';
+import ladderSvgMedium from './../../images/svg/ladder.png';
+import ladderSvgBig from './../../images/svg/ladder.png';
 import {
   getPlayerCoordinates,
   getImage,
   getPointsInfo,
-} from './../../selectors/utils';
-import ladderSvgSmall from './../../images/ladders/small.png';
-import ladderSvgMedium from './../../images/ladders/medium.png';
-import ladderSvgBig from './../../images/ladders/big.png';
+} from './../../selectors/utility';
 
 const Ladder = props => {
   const {
@@ -20,6 +20,7 @@ const Ladder = props => {
 
   // todo : make this custom hook for Player,Snake,Ladder
   let [ladderSource, setLadderSource] = useState();
+
   useEffect(() => {
     let ladderFile;
     switch (size) {
@@ -35,6 +36,8 @@ const Ladder = props => {
 
     // load ladder source
     getImage(ladderFile).then(image => setLadderSource(image));
+
+    /* eslint-disable-next-line */
   }, []);
 
   return (

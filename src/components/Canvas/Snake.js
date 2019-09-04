@@ -4,7 +4,7 @@ import {
   getImage,
   getPlayerCoordinates,
   getPointsInfo,
-} from './../../selectors/utils';
+} from './../../selectors/utility';
 
 import snakeLeftSide from './../../images/snakes/leftSide.png';
 import snakeLong from './../../images/snakes/long.png';
@@ -19,12 +19,13 @@ const Snake = props => {
   const { x: endX, y: endY } = getPlayerCoordinates(endPos, grid);
   const { distance, angel } = getPointsInfo(startX, startY, endX, endY);
 
-  let width = 30;
   let [snakeSource, setSnakeSource] = useState({
     width: 30,
   });
+
   useEffect(() => {
     let snakeFile;
+    let width = 30;
     if (distance > 190) {
       snakeFile = snakeLong;
     } else if (distance <= 190 && distance > 150) {
@@ -44,6 +45,8 @@ const Snake = props => {
         image,
       })
     );
+
+    /* eslint-disable-next-line */
   }, []);
 
   return (
