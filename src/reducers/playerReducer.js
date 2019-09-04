@@ -1,18 +1,4 @@
-import {
-  BOX_WIDTH,
-  BOX_HEIGHT,
-  GRID_WIDTH,
-  GRID_HEIGHT,
-} from '../selectors/variables';
-
-import {
-  getRandomColor,
-  getRandomFace,
-  getLayout,
-  getSnakes,
-  getLadders,
-  getGridMeasurement,
-} from '../selectors/utility';
+import { getRandomColor, getRandomFace } from '../selectors/utility';
 
 import {
   ADD_NEW_PLAYER,
@@ -160,6 +146,9 @@ export function player(state = initialState, action) {
           current: curPlayer,
         },
       };
+
+    default:
+      return state;
   }
 }
 
@@ -186,12 +175,3 @@ function _getNextPlayer({ all, current, count }) {
     ? all[0]
     : all.filter(p => p.id === current.id + 1)[0];
 }
-
-// function _initializeOccupancy() {
-//   var occupacy = {};
-//   occupacy[1] = 1;
-//   for (let i = 2; i <= 100; i++) {
-//     occupacy[i] = 0;
-//   }
-//   return occupacy;
-// }

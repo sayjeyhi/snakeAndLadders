@@ -11,5 +11,7 @@ export function message(state = initialState, action) {
         ...state,
         messages: [action.message, ...state.messages],
       };
+    default:
+      return state;
   }
 }

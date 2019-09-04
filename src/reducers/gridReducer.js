@@ -45,5 +45,16 @@ export function grid(state = initialState, action) {
           ...newGrid,
         },
       };
+    default:
+      return state;
   }
+}
+
+function _initializeOccupancy() {
+  var occupacy = {};
+  occupacy[1] = 1;
+  for (let i = 2; i <= 100; i++) {
+    occupacy[i] = 0;
+  }
+  return occupacy;
 }

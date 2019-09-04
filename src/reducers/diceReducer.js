@@ -47,14 +47,15 @@ export function dice(state = initialState, action) {
         },
       };
 
-    // case ROLL_DICE:
-    //   const diceResult = _rollDice(state);
-    //   return {
-    //     ...state,
-    //     dice: {
-    //       ...state.dice,
-    //       disabled: true
-    //     }
-    //   };
+    case ROLL_DICE:
+      return {
+        ...state,
+        dice: {
+          ...state.dice,
+          disabled: true,
+        },
+      };
+    default:
+      return state;
   }
 }

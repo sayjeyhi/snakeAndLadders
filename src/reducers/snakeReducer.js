@@ -28,5 +28,7 @@ export function snake(state = initialState, action) {
           },
         },
       };
+    default:
+      return state;
   }
 }

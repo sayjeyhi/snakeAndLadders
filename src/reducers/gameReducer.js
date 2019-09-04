@@ -1,9 +1,6 @@
 import { END_GAME, RESTART_GAME } from '../actions/GameActions';
-
 import { GAME_OVER, GAME_ON, GAME_START } from '../selectors/variables';
 
-const firstPlayerColor = getRandomColor();
-const firstPlayerFace = getRandomFace();
 const initialState = {
   status: GAME_START,
 };

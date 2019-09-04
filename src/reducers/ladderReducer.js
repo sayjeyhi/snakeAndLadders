@@ -28,5 +28,7 @@ export function ladder(state = initialState, action) {
           },
         },
       };
+    default:
+      return state;
   }
 }
