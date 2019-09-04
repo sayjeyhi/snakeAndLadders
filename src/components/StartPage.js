@@ -27,7 +27,7 @@ const StartPage = (props) => {
 
       <div className={'flexCenter'}>
         <button
-          className={'btn big orange'}
+          className={'btn big red'}
           onClick={() => {
             props.restartGame();
           }}

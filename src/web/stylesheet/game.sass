@@ -181,6 +181,8 @@ body
   display: block
   font-size: 20px
   position: relative
+  &.red
+    background-image: linear-gradient(to right, #F00000 0%, #DC281E  51%, #F00000  100%)
   &.orange
     background-image: linear-gradient(to right, #F7971E 0%, #FFD200  51%, #F7971E  100%)
   &.black
@@ -257,6 +259,48 @@ body
   color: #fff
   border-radius: 10px
   border: none
+
+#gatsby-focus-wrapper
+  position: relative
+  overflow: hidden
+  min-height: 100%
+.suspenseShapes
+  svg
+    position: absolute
+    max-width: 200px
+  #ladderSvg
+    right: -31px
+    top: -2rem
+    transform: rotate(23deg)
+    *
+      fill: rgba(228, 228, 228, 0.49)
+  #snakeSvg
+    left: -31px
+    top: -10rem
+    transform: rotate(145deg)
+    *
+      fill: #edf9ca
+  #topHexagon
+    left: -31px
+    top: 4rem
+    animation: spin infinite 100s
+    *
+      fill: rgba(255, 255, 255, 0.45)
+  #hexagonSvg
+    left: -31px
+    bottom: -4rem
+    animation: spin infinite 100s
+    transform: rotate(128deg)
+    *
+      fill: rgba(178, 205, 228, 0.21)
+  #plusSvg
+    right: -5rem
+    bottom: -5rem
+    min-width: 300px
+    animation: spin infinite 100s
+    transform: rotate(18deg)
+    *
+      fill: rgba(203, 224, 75, 0.14)
 
 
 #cubeContainer
