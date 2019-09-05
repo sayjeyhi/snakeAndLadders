@@ -9,6 +9,16 @@ with `Gatsby` excellent framework. We use `react-motion` to move players and `sa
 
 ## 🚀 Quick start
 
+_important tip :_ I use `node-canvas` in this game, and you need to install before.
+if you are on mac :
+https://github.com/Automattic/node-canvas/wiki/Installation:-Mac-OS-X
+
+if you are on linux:
+https://github.com/Automattic/node-canvas/wiki/Installation:-Fedora-and-other-RPM-based-distributions
+
+if you are on windows :
+https://github.com/Automattic/node-canvas/wiki/Installation:-Windows
+
 1.  **Create a Gatsby site.**
 
     Use the Gatsby CLI to create a new site, specifying the default starter.
@@ -33,7 +43,7 @@ with `Gatsby` excellent framework. We use `react-motion` to move players and `sa
 
     _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/diceSaga.js`. Save your changes and the browser will update in real time!
 
 1)  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
 

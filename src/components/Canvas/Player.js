@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Image, Group, Rect } from 'react-konva';
 import { Motion, spring } from 'react-motion';
-import { getImage, getPlayerCoordinates } from './../../selectors/utility';
+import { getImage, getPlayerCoordinates } from './../../constants/utilities';
 import avatars from './../../images/avatars/avatars';
 
 const Player = props => {
@@ -13,6 +13,7 @@ const Player = props => {
     },
     grid,
   } = props;
+
   const { x, y } = getPlayerCoordinates(pos, grid, boxPosition);
   const isCurrent = id === currentPlayerId;
 

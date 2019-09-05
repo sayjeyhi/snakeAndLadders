@@ -10,10 +10,10 @@ import { connect } from 'react-redux';
 const GamePlay = props => {
   const {
     grid,
-    snakes,
-    ladders,
+    game: { snakes, ladders },
     players: { all, current },
-  } = props.game;
+  } = props.state;
+
   return (
     <div className={'gameBlock'}>
       <Stage width={grid.width} height={grid.height}>
@@ -51,7 +51,7 @@ const GamePlay = props => {
 };
 
 const mapStateToProps = state => ({
-  game: state.game,
+  state,
 });
 
 export default connect(mapStateToProps)(GamePlay);

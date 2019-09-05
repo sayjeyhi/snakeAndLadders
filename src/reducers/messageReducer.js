@@ -1,17 +1,13 @@
-import { LOG_MESSAGE } from '../actions/GameActions';
+import { LOG_MESSAGE, RESET_MESSAGES } from "../actions/GameActions";
 
-const initialState = {
-  messages: ['برای شروع بازی ، تاس بیندازید ✌'],
-};
+const initialState = ['برای شروع بازی ، تاس بیندازید ✌'];
 
-export function message(state = initialState, action) {
-  switch (action.type) {
-    case LOG_MESSAGE:
-      return {
-        ...state,
-        messages: [action.message, ...state.messages],
-      };
-    default:
-      return state;
+export function messages(state = initialState, action) {
+  if (action.type === LOG_MESSAGE) {
+    return [action.message, ...state];
+  } else if(action.type === RESET_MESSAGES){
+      return initialState;
+  }else{
+    return state;
   }
 }

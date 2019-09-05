@@ -1,8 +1,11 @@
 import { END_GAME, RESTART_GAME } from '../actions/GameActions';
-import { GAME_OVER, GAME_ON, GAME_START } from '../selectors/variables';
+import { GAME_OVER, GAME_ON, GAME_START } from '../constants/variables';
+import { getLadders, getSnakes } from '../constants/utilities';
 
 const initialState = {
   status: GAME_START,
+  snakes: getSnakes(),
+  ladders: getLadders(),
 };
 
 export function game(state = initialState, action) {

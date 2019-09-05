@@ -1,60 +1,49 @@
-import { REDRAW } from '../actions/GameActions';
+import { REDRAW, RESET_DICE, RESET_GRID } from "../actions/GameActions";
 
 import {
   BOX_WIDTH,
   BOX_HEIGHT,
   GRID_WIDTH,
   GRID_HEIGHT,
-} from '../selectors/variables';
+} from '../constants/variables';
 
-import { getLayout, getGridMeasurement } from '../selectors/utility';
+import { getLayout, getGridMeasurement } from '../constants/utilities';
 
 const initialState = {
-  grid: {
-    layout: getLayout(GRID_WIDTH, GRID_HEIGHT),
-    width: GRID_WIDTH,
-    height: GRID_HEIGHT,
-    occupancy: _initializeOccupancy(),
-    box: {
-      height: BOX_HEIGHT,
-      width: BOX_WIDTH,
-    },
+  layout: getLayout(GRID_WIDTH, GRID_HEIGHT),
+  width: GRID_WIDTH,
+  height: GRID_HEIGHT,
+  box: {
+    height: BOX_HEIGHT,
+    width: BOX_WIDTH,
   },
 };
 
 export function grid(state = initialState, action) {
-  switch (action.type) {
-    case REDRAW:
-      let newGrid = {};
-      let newWidth = action.width - 64;
-      let newHeight = action.height - 64;
-      newWidth = getGridMeasurement(newWidth, newHeight);
-      newGrid = {
-        layout: getLayout(newWidth, newWidth),
-        width: newWidth,
-        height: newWidth,
-        box: {
-          height: newWidth / 10,
-          width: newWidth / 10,
-        },
-      };
-      return {
-        ...state,
-        grid: {
-          ...state.grid,
-          ...newGrid,
-        },
-      };
-    default:
-      return state;
+  if (action.type === REDRAW) {
+    let newGrid = {};
+    let newWidth = action.width - 64;
+    let newHeight = action.height - 64;
+    newWidth = getGridMeasurement(newWidth, newHeight);
+    newGrid = {
+      layout: getLayout(newWidth, newWidth),
+      width: newWidth,
+      height: newWidth,
+      box: {
+        height: newWidth / 10,
+        width: newWidth / 10,
+      },
+    };
+    return {
+      ...state,
+      ...newGrid,
+    };
+  } else if( action.type === RESET_GRID){
+    return {
+      ...initialState
+    };
+  } else {
+    return state;
   }
 }
 
-function _initializeOccupancy() {
-  var occupacy = {};
-  occupacy[1] = 1;
-  for (let i = 2; i <= 100; i++) {
-    occupacy[i] = 0;
-  }
-  return occupacy;
-}

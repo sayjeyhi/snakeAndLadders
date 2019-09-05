@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { GAME_START, GAME_ON } from './../selectors/variables';
-import { redraw, restartGame } from '../actions/GameActions';
+import { GAME_START, GAME_ON } from './../constants/variables';
+import { redraw } from '../actions/GameActions';
 
 import StartPage from './StartPage';
 import GamePanel from './GamePanel';
@@ -12,9 +12,8 @@ import _ from 'lodash';
 const Game = props => {
   const {
     redraw,
-    restartGame,
-    game: {
-      status,
+    state: {
+      game: { status },
       players: { all },
     },
   } = props;
@@ -35,21 +34,21 @@ const Game = props => {
         </Fragment>
       ) : status === GAME_ON ? (
         <Fragment>
-          <GamePanel ro />
+          <GamePanel />
           <GamePlay />
         </Fragment>
       ) : (
-        <Results players={all} startNewGame={restartGame} />
+        <Results players={all} />
       )}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  game: state.game,
+  state,
 });
 
 export default connect(
   mapStateToProps,
-  { redraw, restartGame }
+  { redraw }
 )(Game);

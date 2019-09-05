@@ -1,4 +1,4 @@
-import { getRandomColor, getRandomFace } from '../selectors/utility';
+import { getRandomColor, getRandomFace } from '../constants/utilities';
 
 import {
   ADD_NEW_PLAYER,
@@ -6,15 +6,29 @@ import {
   CHANGE_PLAYER,
   CHANGE_PLAYER_POSITION_IN_BOX,
   SET_PLAYER_PERSISTENCE,
-} from '../actions/GameActions';
+  ADD_SNAKE_BITE,
+  RECORD_DICE_LOG,
+  ADD_LADDER_HIKE, RESET_PLAYERS
+} from "../actions/GameActions";
 
 const firstPlayerColor = getRandomColor();
 const firstPlayerFace = getRandomFace();
 const initialState = {
-  players: {
-    count: 1,
-    persistence: 1,
-    current: {
+  count: 1,
+  persistence: 1,
+  current: {
+    id: 1,
+    pos: 1,
+    color: firstPlayerColor,
+    path: [1],
+    diceLog: [],
+    boxPosition: -1, //center
+    snakeBites: 0,
+    ladderHikes: 0,
+    ...firstPlayerFace,
+  },
+  all: [
+    {
       id: 1,
       pos: 1,
       color: firstPlayerColor,
@@ -25,128 +39,138 @@ const initialState = {
       ladderHikes: 0,
       ...firstPlayerFace,
     },
-    all: [
-      {
-        id: 1,
-        pos: 1,
-        color: firstPlayerColor,
-        path: [1],
-        diceLog: [],
-        boxPosition: -1, //center
-        snakeBites: 0,
-        ladderHikes: 0,
-        ...firstPlayerFace,
-      },
-    ],
-  },
+  ],
 };
 
-export function player(state = initialState, action) {
+export function players(state = initialState, action) {
   switch (action.type) {
     case ADD_NEW_PLAYER:
-      const newPlayer = _generateNewPlayer(state.players.count);
+      const newPlayer = _generateNewPlayer(state.count);
 
       return {
         ...state,
-        grid: {
-          ...state.grid,
-          occupancy: {
-            ...state.grid.occupancy,
-            1: state.grid.occupancy[1] + 1,
-          },
-        },
-        players: {
-          ...state.players,
-          all: [...state.players.all, newPlayer],
-          count: state.players.count + 1,
-        },
+        all: [...state.all, newPlayer],
+        count: state.count + 1,
       };
 
     case MOVE_PLAYER:
-      let newOccupancy = {};
-      newOccupancy[action.newPos] = state.grid.occupancy[action.newPos] + 1;
-      newOccupancy[state.players.current.pos] =
-        state.grid.occupancy[state.players.current.pos] - 1;
 
       return {
         ...state,
-        grid: {
-          ...state.grid,
-          occupancy: {
-            ...state.grid.occupancy,
-            ...newOccupancy,
-          },
-        },
-        players: {
-          ...state.players,
-          all: state.players.all.map(p => {
-            if (p.id === state.players.current.id) {
-              return {
-                ...p,
-                pos: action.newPos,
-                boxPosition: -1,
-                path: [...p.path, action.newPos],
-              };
-            }
-            return p;
-          }),
-          current: {
-            ...state.players.current,
-            pos: action.newPos,
-            boxPosition: -1,
-            path: [...state.players.current.path, action.newPos],
-          },
+        all: state.all.map(p => {
+          if (p.id === state.current.id) {
+            return {
+              ...p,
+              pos: action.newPos,
+              boxPosition: -1,
+              path: [...p.path, action.newPos],
+            };
+          }
+          return p;
+        }),
+        current: {
+          ...state.current,
+          pos: action.newPos,
+          boxPosition: -1,
+          path: [...state.current.path, action.newPos],
         },
       };
 
     case SET_PLAYER_PERSISTENCE:
       return {
         ...state,
-        players: {
-          ...state.players,
-          persistence: action.persistence,
+        persistence: action.persistence,
+      };
+
+    case RECORD_DICE_LOG:
+      return {
+        ...state,
+        all: state.all.map(p => {
+          if (p.id === state.current.id) {
+            return {
+              ...p,
+              diceLog: [...p.diceLog, action.diceResult],
+            };
+          }
+          return p;
+        }),
+        current: {
+          ...state.current,
+          diceLog: [...state.current.diceLog, action.diceResult],
         },
       };
 
     case CHANGE_PLAYER:
-      const nextPlayer = _getNextPlayer(state.players);
+      const nextPlayer = _getNextPlayer(state);
       return {
         ...state,
-        dice: {
-          ...state.dice,
-          disabled: false,
-        },
-        players: {
-          ...state.players,
-          current: nextPlayer,
-        },
+        current: nextPlayer,
       };
 
     case CHANGE_PLAYER_POSITION_IN_BOX:
       let curPlayer =
-        state.players.current.id === action.playerId
+        state.current.id === action.playerId
           ? {
-              ...state.players.current,
+              ...state.current,
               boxPosition: action.newBoxPosition,
             }
-          : state.players.current;
+          : state.current;
       return {
         ...state,
-        players: {
-          ...state.players,
-          all: state.players.all.map(p => {
-            if (p.id === action.playerId) {
-              return {
-                ...p,
-                boxPosition: action.newBoxPosition,
-              };
-            }
-            return p;
-          }),
-          current: curPlayer,
+        all: state.all.map(p => {
+          if (p.id === action.playerId) {
+            return {
+              ...p,
+              boxPosition: action.newBoxPosition,
+            };
+          }
+          return p;
+        }),
+        current: curPlayer,
+      };
+
+    case ADD_SNAKE_BITE:
+      const newSnakeBites = state.current.snakeBites + 1;
+      return {
+        ...state,
+        all: state.all.map(p => {
+          if (p.id === state.current.id) {
+            return {
+              ...p,
+              snakeBites: newSnakeBites,
+            };
+          }
+          return p;
+        }),
+        current: {
+          ...state.current,
+          snakeBites: newSnakeBites,
         },
       };
 
+    case ADD_LADDER_HIKE:
+      const newLadderHikes = state.current.ladderHikes + 1;
+      return {
+        ...state,
+        all: state.all.map(p => {
+          if (p.id === state.current.id) {
+            return {
+              ...p,
+              ladderHikes: newLadderHikes,
+            };
+          }
+          return p;
+        }),
+        current: {
+          ...state.current,
+          ladderHikes: newLadderHikes,
+        },
+      };
+
+    case RESET_PLAYERS:
+      return {
+        ...initialState
+      };
     default:
       return state;
   }

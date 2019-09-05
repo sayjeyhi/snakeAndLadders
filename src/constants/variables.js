@@ -1,4 +1,4 @@
-import { getGridMeasurement } from './utility';
+import { getGridMeasurement } from './utilities';
 
 const gridMeasurement = getGridMeasurement();
 export const GRID_WIDTH = gridMeasurement;

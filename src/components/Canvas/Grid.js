@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Rect, Group, Text } from 'react-konva';
-import { GRID_LIGHT, GRID_DARK } from './../../selectors/variables';
+import { GRID_LIGHT, GRID_DARK } from './../../constants/variables';
 
 const Grid = props => {
   const {

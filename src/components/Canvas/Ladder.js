@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-konva';
-import ladderSvgSmall from './../../images/svg/ladder.png';
-import ladderSvgMedium from './../../images/svg/ladder.png';
-import ladderSvgBig from './../../images/svg/ladder.png';
+import ladderSvgSmall from './../../images/ladders/small.png';
+import ladderSvgMedium from './../../images/ladders/medium.png';
+import ladderSvgBig from './../../images/ladders/big.png';
 import {
   getPlayerCoordinates,
   getImage,
   getPointsInfo,
-} from './../../selectors/utility';
+} from './../../constants/utilities';
 
 const Ladder = props => {
   const {
     ladder: { startPos, endPos },
     grid,
   } = props;
+
+  // make position
   const { x: startX, y: startY } = getPlayerCoordinates(startPos, grid);
   const { x: endX, y: endY } = getPlayerCoordinates(endPos, grid);
   const { distance, angel, size } = getPointsInfo(startX, startY, endX, endY);

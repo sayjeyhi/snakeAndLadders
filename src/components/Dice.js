@@ -5,7 +5,7 @@ const Dice = props => {
   const { rolling } = props;
   const {
     dice: { result: choosed },
-  } = props.game;
+  } = props.state;
 
   console.log({
     choosed,
@@ -29,7 +29,7 @@ const Dice = props => {
 };
 
 const mapStateToProps = state => ({
-  game: state.game,
+  state,
 });
 
 export default connect(mapStateToProps)(Dice);

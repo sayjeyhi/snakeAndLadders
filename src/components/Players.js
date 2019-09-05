@@ -1,6 +1,8 @@
 import React from 'react';
 import avatars from './../images/avatars/avatars';
-import { MAX_PLAYERS } from '../selectors/variables';
+import { MAX_PLAYERS } from '../constants/variables';
+import { connect } from 'react-redux';
+import { addNewPlayer } from '../actions/GameActions';
 
 const Player = props => {
   const {
@@ -30,6 +32,7 @@ const Players = props => {
     current: { id },
     count: playersCount,
   } = props.players;
+
   return (
     <>
       {all.map((p, index) => {
@@ -54,4 +57,9 @@ const Players = props => {
   );
 };
 
-export default Players;
+export default connect(
+  null,
+  {
+    addNewPlayer,
+  }
+)(Players);

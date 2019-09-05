@@ -4,10 +4,11 @@ import {
   getImage,
   getPlayerCoordinates,
   getPointsInfo,
-} from './../../selectors/utility';
+} from './../../constants/utilities';
 
 import snakeLeftSide from './../../images/snakes/leftSide.png';
 import snakeLong from './../../images/snakes/long.png';
+import snakeTooLong from './../../images/snakes/solong.png';
 import snakeMedium from './../../images/snakes/medium.png';
 
 const Snake = props => {
@@ -15,6 +16,8 @@ const Snake = props => {
     snake: { startPos, endPos },
     grid,
   } = props;
+
+  // make position
   const { x: startX, y: startY } = getPlayerCoordinates(startPos, grid);
   const { x: endX, y: endY } = getPlayerCoordinates(endPos, grid);
   const { distance, angel } = getPointsInfo(startX, startY, endX, endY);
@@ -26,7 +29,10 @@ const Snake = props => {
   useEffect(() => {
     let snakeFile;
     let width = 30;
-    if (distance > 190) {
+    if (distance > 210) {
+      snakeFile = snakeTooLong;
+      width = 40;
+    } else if (distance > 190 && distance < 210) {
       snakeFile = snakeLong;
     } else if (distance <= 190 && distance > 150) {
       snakeFile = snakeLeftSide;
