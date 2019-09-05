@@ -1,4 +1,4 @@
-import { REDRAW, RESET_DICE, RESET_GRID } from "../actions/GameActions";
+import { REDRAW, RESET_GRID } from "../actions/GameActions";
 
 import {
   BOX_WIDTH,

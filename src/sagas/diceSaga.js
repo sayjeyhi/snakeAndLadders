@@ -55,15 +55,11 @@ export function* rollDiceProcessSaga() {
    * GAME LOGIC
    **/
   if (newPos > 100) {
-    yield [
-      put(logMessage(` ${name} منتظر عدد مناسب ! 😨 `)),
-      put(changePlayer()),
-    ];
+    yield put(logMessage(` ${name} منتظر عدد مناسب ! 😨 `));
+    yield put(changePlayer());
   } else if (newPos === 100) {
-    yield [
-      put(movePlayer(newPos)),
-      put(logMessage(`هوراااا ، ${name} برنده بازی شد `))
-    ];
+    yield put(movePlayer(newPos));
+    yield put(logMessage(`هوراااا ، ${name} برنده بازی شد `));
 
     yield delay(800);
     yield put(endGame());
