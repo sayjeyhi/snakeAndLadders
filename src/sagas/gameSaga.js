@@ -1,9 +1,11 @@
 import { takeEvery, put } from 'redux-saga/effects';
 import {
-  resetDice, resetGrid, resetMessages,
+  resetDice,
+  resetGrid,
+  resetMessages,
   resetPlayers,
-  RESTART_GAME
-} from "../actions/GameActions";
+} from '../actions/GameActions';
+import { RESTART_GAME } from './../constants/types';
 
 /**
  * Watch when to restart game

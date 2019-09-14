@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sortable } from 'react-sortable';
-import { connect } from "react-redux";
-import { restartGame } from "../actions/GameActions";
+import { connect } from 'react-redux';
+import { restartGame } from '../actions/GameActions';
 
 const SortableResultItem = Sortable(props => (
   <div {...props} className="list-item">
@@ -9,7 +9,7 @@ const SortableResultItem = Sortable(props => (
   </div>
 ));
 
-const Results = (props) => {
+const Results = props => {
   return (
     <section className="results-section results">
       <h1 className={'heading'}>نتایج مسابقه</h1>
@@ -17,11 +17,7 @@ const Results = (props) => {
         {props.players.map((player, i) => {
           const { name, pos, diceLog, snakeBites, ladderHikes } = player;
           return (
-            <SortableResultItem
-              key={i}
-              sortId={i}
-              outline="list"
-            >
+            <SortableResultItem key={i} sortId={i} outline="list">
               <div className={'resultCard'}>
                 <strong>{name}</strong>
                 {pos === 100 ? '( برنده 🎲 )' : ''} {diceLog.length} پرتاب تاس

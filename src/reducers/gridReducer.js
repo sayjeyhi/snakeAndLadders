@@ -1,4 +1,4 @@
-import { REDRAW, RESET_GRID } from "../actions/GameActions";
+import { REDRAW, RESET_GRID } from '../constants/types';
 
 import {
   BOX_WIDTH,
@@ -38,12 +38,11 @@ export function grid(state = initialState, action) {
       ...state,
       ...newGrid,
     };
-  } else if( action.type === RESET_GRID){
+  } else if (action.type === RESET_GRID) {
     return {
-      ...initialState
+      ...initialState,
     };
   } else {
     return state;
   }
 }
-

@@ -1,4 +1,4 @@
-import { ROLL_DICE, ENABLE_DICE, RESET_DICE } from "../actions/GameActions";
+import { ROLL_DICE, ENABLE_DICE, RESET_DICE } from '../constants/types';
 
 const initialState = {
   disabled: false,
@@ -21,7 +21,7 @@ export function dice(state = initialState, action) {
 
     case RESET_DICE:
       return {
-        ...initialState
+        ...initialState,
       };
 
     default:

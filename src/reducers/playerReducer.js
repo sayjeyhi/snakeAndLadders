@@ -8,8 +8,9 @@ import {
   SET_PLAYER_PERSISTENCE,
   ADD_SNAKE_BITE,
   RECORD_DICE_LOG,
-  ADD_LADDER_HIKE, RESET_PLAYERS
-} from "../actions/GameActions";
+  ADD_LADDER_HIKE,
+  RESET_PLAYERS,
+} from '../constants/types';
 
 const firstPlayerColor = getRandomColor();
 const firstPlayerFace = getRandomFace();
@@ -54,7 +55,6 @@ export function players(state = initialState, action) {
       };
 
     case MOVE_PLAYER:
-
       return {
         ...state,
         all: state.all.map(p => {
@@ -169,7 +169,7 @@ export function players(state = initialState, action) {
 
     case RESET_PLAYERS:
       return {
-        ...initialState
+        ...initialState,
       };
     default:
       return state;

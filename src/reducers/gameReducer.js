@@ -1,4 +1,4 @@
-import { END_GAME, RESTART_GAME } from '../actions/GameActions';
+import { END_GAME, RESTART_GAME } from '../constants/types';
 import { GAME_OVER, GAME_ON, GAME_START } from '../constants/variables';
 import { getLadders, getSnakes } from '../constants/utilities';
 

@@ -1,19 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getDice } from './../selectors';
 
 const Dice = props => {
   const { rolling } = props;
-  const {
-    dice: { result: choosed },
-  } = props.state;
+  const { result: choosed } = props.dice;
 
-  console.log({
-    choosed,
-    rolling,
-  });
   const choosedClass = `show-${choosed || 4}`;
   return (
-    <section id="cubeContainer" className={rolling ? 'show' : ''}>
+    <section id="cubeContainer" className={rolling && 'show'}>
       <div id="cube" className={'show-spinning ' + choosedClass}>
         <figure className="front">1</figure>
         <figure className="back">2</figure>
@@ -29,7 +24,7 @@ const Dice = props => {
 };
 
 const mapStateToProps = state => ({
-  state,
+  dice: getDice(state),
 });
 
 export default connect(mapStateToProps)(Dice);

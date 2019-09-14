@@ -3,13 +3,12 @@ import Players from './Players';
 import Dice from './Dice';
 import { connect } from 'react-redux';
 import { rollDice, endGame, restartGame } from '../actions/GameActions';
+import { getDice, getMessages, getPlayers } from "../selectors";
 
 const GamePanel = props => {
-  const {
-    dice: { disabled: isDiceDisabled },
-    players,
-    messages,
-  } = props.state;
+  const { disabled: isDiceDisabled } = props.dice;
+  const players = props.players;
+  const messages = props.messages;
 
   return (
     <>
@@ -26,7 +25,7 @@ const GamePanel = props => {
             className={'rollDiceBtn ' + (isDiceDisabled ? 'disabled' : '')}
             disabled={isDiceDisabled}
             onClick={
-              !isDiceDisabled ? () => props.dispatch(rollDice()) : () => {}
+              !isDiceDisabled ? props.rollDice : () => {}
             }
           >
             پرتاب تاس
@@ -38,10 +37,10 @@ const GamePanel = props => {
         />
 
         <section className="controlPart">
-          <button onClick={() => props.dispatch(restartGame())} className="btn">
+          <button onClick={props.restartGame} className="btn">
             ریستارت
           </button>
-          <button onClick={() => props.dispatch(endGame())} className="btn">
+          <button onClick={props.endGame} className="btn">
             پایان
           </button>
         </section>
@@ -51,14 +50,17 @@ const GamePanel = props => {
 };
 
 const mapStateToProps = state => ({
-  state,
+  dice: getDice(state),
+  players: getPlayers(state),
+  messages: getMessages(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-  dispatch
-});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    restartGame,
+    endGame,
+    rollDice
+  }
 )(GamePanel);

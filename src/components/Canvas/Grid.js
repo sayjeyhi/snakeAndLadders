@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React  from 'react';
 import { Rect, Group, Text } from 'react-konva';
 import { GRID_LIGHT, GRID_DARK } from './../../constants/variables';
 
@@ -11,7 +11,7 @@ const Grid = props => {
   } = props.grid;
 
   return (
-    <Fragment>
+    <>
       {Object.keys(layout).map(box => {
         const isEven = box % 2 === 0;
         return (
@@ -44,7 +44,7 @@ const Grid = props => {
           </Group>
         );
       })}
-    </Fragment>
+    </>
   );
 };
 

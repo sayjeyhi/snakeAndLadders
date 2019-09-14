@@ -5,17 +5,19 @@ import {
   changePlayer,
   enableDice,
   endGame,
-  logMessage, logPlayerDices,
+  logMessage,
+  logPlayerDices,
   movePlayer,
-  ROLL_DICE,
-  setPlayerPersistence
-} from "../actions/GameActions";
+  setPlayerPersistence,
+} from '../actions/GameActions';
 
 import {
   getRandomEmoji,
   getRandomExcellentEmoji,
   getRandomSadEmoji,
 } from '../constants/utilities';
+
+import { ROLL_DICE } from '../constants/types';
 
 import { getDice, getGame, getPlayers } from '../selectors';
 
@@ -55,7 +57,11 @@ export function* rollDiceProcessSaga() {
    * GAME LOGIC
    **/
   if (newPos > 100) {
-    yield put(logMessage(` ${name} منتظر عدد مناسب ! 😨 `));
+    yield put(
+      logMessage(
+        ` ${name} منتظر عدد مناسب برای اتمام بازی !${getRandomExcellentEmoji()} `
+      )
+    );
     yield put(changePlayer());
   } else if (newPos === 100) {
     yield put(movePlayer(newPos));
@@ -68,7 +74,6 @@ export function* rollDiceProcessSaga() {
 
     let emoji = getRandomEmoji(diceResult);
     yield put(logMessage(` ${name} ${diceResult} آورد ${emoji}`));
-
 
     /**
      * We check if player hit to busted snake or wings up ladder
@@ -86,9 +91,11 @@ export function* rollDiceProcessSaga() {
 
       yield put(movePlayer(snake.endPos));
       yield put(addSnakeBite());
-      yield put(logMessage(
-        ` ${name} ${diceResult} آورد و با مار برخورد کرد ${getRandomSadEmoji()}`
-      ));
+      yield put(
+        logMessage(
+          ` ${name} ${diceResult} آورد و با مار برخورد کرد ${getRandomSadEmoji()}`
+        )
+      );
     }
 
     if (ladderStartPosList.indexOf(newPos) !== -1) {
@@ -101,33 +108,30 @@ export function* rollDiceProcessSaga() {
 
       yield put(movePlayer(ladder.endPos));
       yield put(addLadderHike());
-      yield put(logMessage(
-        ` ${name} ${diceResult} آورد و از نردبان بالا رفت  ${getRandomExcellentEmoji()}`
-      ));
+      yield put(
+        logMessage(
+          ` ${name} ${diceResult} آورد و از نردبان بالا رفت  ${getRandomExcellentEmoji()}`
+        )
+      );
     }
-
 
     /**
      * Did user got 6? maximum 3 times
      */
     if (diceResult === 6 && persistence < 3) {
-      yield put(
-        setPlayerPersistence(persistence + 1)
-      );
+      yield put(setPlayerPersistence(persistence + 1));
     } else {
       // if hit did not happened
-      if(!hitHappened) {
+      if (!hitHappened) {
         yield delay(300);
         yield put(changePlayer());
         yield put(setPlayerPersistence(1));
-      }else{
+      } else {
         yield delay(1000);
         yield put(changePlayer());
       }
     }
-
   }
-
 
   yield delay(350);
   yield put(enableDice());
