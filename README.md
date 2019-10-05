@@ -1,11 +1,11 @@
-<h1 align="center">
-  🐍 Snake and ladders
-</h1>
+# Snake and Ladders with canvas
+
+> 🐍  build for snapp market context
 
 This game is built with `react` with `hooks`, `redux` , `canvas` and `react-konva` library
 with `Gatsby` excellent framework. We use `react-motion` to move players and `sass` with `flex-box` for styling.
 
-<h3>Author: [(https://jrjs.ir)](Jafar Rezaei) [jafar.rezaei.ard@gmail.com] [09147426907] </h3>
+#### Demo : [snake and ladders](https://snakeladder.netlify.com/)
 
 ## 🚀 Quick start
 
