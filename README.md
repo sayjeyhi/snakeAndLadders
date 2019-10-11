@@ -1,6 +1,6 @@
 # Snake and Ladders with canvas
 
-> 🐍  build for snapp market context
+> 🐍  build for snapp market contest
 
 This game is built with `react` with `hooks`, `redux` , `canvas` and `react-konva` library
 with `Gatsby` excellent framework. We use `react-motion` to move players and `sass` with `flex-box` for styling.
