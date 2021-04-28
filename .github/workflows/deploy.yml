@@ -1,0 +1,37 @@
+name: Build and Deploy
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+
+      - name: Cache  💾
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.cache
+          key: ${{ runner.os }}-gatsby-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Setup node 🎱
+        uses: actions/setup-node@v2
+        with:
+          node-version: '10.x'
+
+      - name: Install 🎢
+        run: yarn install --force
+
+      - name: Build 🧩
+        run: yarn run build
+        env:
+          CI: true
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public
+          CLEAN: true # Automatically remove deleted files from the deploy branch
