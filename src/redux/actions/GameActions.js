@@ -1,5 +1,5 @@
-import generateDiceNumber from '../constants/utilities/generateDiceNumber';
-import * as types from './../constants/types';
+import generateDiceNumber from '../../constants/utilities/generateDiceNumber';
+import * as types from '../../constants/types';
 
 export function addNewPlayer() {
   return {

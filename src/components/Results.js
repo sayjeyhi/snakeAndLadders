@@ -1,7 +1,7 @@
 import React from 'react';
 import { Sortable } from 'react-sortable';
 import { connect } from 'react-redux';
-import { restartGame } from '../actions/GameActions';
+import { restartGame } from '../redux/actions/GameActions';
 
 const SortableResultItem = Sortable(props => (
   <div {...props} className="list-item">

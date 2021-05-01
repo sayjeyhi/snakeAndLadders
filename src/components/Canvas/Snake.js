@@ -6,10 +6,10 @@ import {
   getPointsInfo,
 } from './../../constants/utilities';
 
-import snakeLeftSide from './../../images/snakes/leftSide.png';
-import snakeLong from './../../images/snakes/long.png';
-import snakeTooLong from './../../images/snakes/solong.png';
-import snakeMedium from './../../images/snakes/medium.png';
+import snakeLeftSide from '../../assets/images/snakes/leftSide.png';
+import snakeLong from '../../assets/images/snakes/long.png';
+import snakeTooLong from '../../assets/images/snakes/solong.png';
+import snakeMedium from '../../assets/images/snakes/medium.png';
 
 const Snake = props => {
   const {

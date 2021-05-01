@@ -4,12 +4,11 @@
  *
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { useStaticQuery, graphql } from 'gatsby';
 
-import './../../web/stylesheet/game.sass';
+import '../../assets/css/game.css';
 
 const Layout = ({ children }) => {
   // const data = useStaticQuery(graphql`
@@ -109,7 +108,7 @@ const Layout = ({ children }) => {
               xmlnsXlink="http://www.w3.org/2000/svg"
               width="194"
               height="169"
-              id={'hexagonSvg'}
+              id='hexagonSvg'
               viewBox="0 0 194 168.0089283341811"
             >
               <path
@@ -122,7 +121,7 @@ const Layout = ({ children }) => {
         </main>
         <footer>
           © {new Date().getFullYear()}, By{' '}
-          <a href="https://jrjs.ir" target={'blank'}>
+          <a href="https://sayjeyhi.com" target='blank'>
             JafarRezaei
           </a>
         </footer>

@@ -1,15 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getDice } from './../selectors';
+import { getDice } from '../redux/selectors';
 
 const Dice = props => {
   const { rolling } = props;
-  const { result: choosed } = props.dice;
+  const { result: choose } = props.dice;
 
-  const choosedClass = `show-${choosed || 4}`;
+  const chooseClass = `show-${choose || 4}`;
   return (
     <section id="cubeContainer" className={rolling && 'show'}>
-      <div id="cube" className={'show-spinning ' + choosedClass}>
+      <div id="cube" className={'show-spinning ' + chooseClass}>
         <figure className="front">1</figure>
         <figure className="back">2</figure>
         <figure className="right">3</figure>

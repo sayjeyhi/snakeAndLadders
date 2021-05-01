@@ -1,4 +1,4 @@
-import { LOG_MESSAGE, RESET_MESSAGES } from '../constants/types';
+import { LOG_MESSAGE, RESET_MESSAGES } from '../../constants/types';
 
 const initialState = ['برای شروع بازی ، تاس بیندازید ✌'];
 

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { GAME_START, GAME_ON } from './../constants/variables';
-import { redraw } from '../actions/GameActions';
+import { GAME_START, GAME_ON } from '../constants/variables';
+import { redraw } from '../redux/actions/GameActions';
 
 import StartPage from './StartPage';
 import GamePanel from './GamePanel';
 import GamePlay from './GamePlay';
 import Results from './Results';
-import _ from 'lodash';
+import debounce from 'lodash-es/debounce';
 
 const Game = props => {
   const {
@@ -21,7 +21,7 @@ const Game = props => {
   useEffect(() => {
     // redraw canvas when resize the page
     const redrawFn = e => redraw(e.target.outerWidth, e.target.outerHeight);
-    window.addEventListener('resize', _.debounce(e => redrawFn(e), 500));
+    window.addEventListener('resize', debounce(e => redrawFn(e), 500));
   }, [redraw]);
 
   return (

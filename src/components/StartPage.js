@@ -1,7 +1,7 @@
 import React from 'react';
-import { restartGame } from '../actions/GameActions';
-import logo from './../images/logo.png';
 import { connect } from 'react-redux';
+import { restartGame } from '../redux/actions/GameActions';
+import logo from '../assets/images/logo.png';
 
 const StartPage = props => {
   return (

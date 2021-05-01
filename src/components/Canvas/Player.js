@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Image, Group, Rect } from 'react-konva';
 import { Motion, spring } from 'react-motion';
 import { getImage, getPlayerCoordinates } from './../../constants/utilities';
-import avatars from './../../images/avatars/avatars';
+import avatars from '../../assets/images/avatars/avatars';
 
 const Player = props => {
   const {

@@ -15,9 +15,9 @@ import {
   getRandomEmoji,
   getRandomExcellentEmoji,
   getRandomSadEmoji,
-} from '../constants/utilities';
+} from '../../constants/utilities';
 
-import { ROLL_DICE } from '../constants/types';
+import { ROLL_DICE } from '../../constants/types';
 
 import { getDice, getGame, getPlayers } from '../selectors';
 

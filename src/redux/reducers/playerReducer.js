@@ -1,4 +1,4 @@
-import { getRandomColor, getRandomFace } from '../constants/utilities';
+import { getRandomColor, getRandomFace } from '../../constants/utilities';
 
 import {
   ADD_NEW_PLAYER,
@@ -10,7 +10,7 @@ import {
   RECORD_DICE_LOG,
   ADD_LADDER_HIKE,
   RESET_PLAYERS,
-} from '../constants/types';
+} from '../../constants/types';
 
 const firstPlayerColor = getRandomColor();
 const firstPlayerFace = getRandomFace();

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-konva';
-import ladderSvgSmall from './../../images/ladders/small.png';
-import ladderSvgMedium from './../../images/ladders/medium.png';
-import ladderSvgBig from './../../images/ladders/big.png';
+import ladderSvgSmall from '../../assets/images/ladders/small.png';
+import ladderSvgMedium from '../../assets/images/ladders/medium.png';
+import ladderSvgBig from '../../assets/images/ladders/big.png';
 import {
   getPlayerCoordinates,
   getImage,

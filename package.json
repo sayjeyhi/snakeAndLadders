@@ -20,7 +20,7 @@
     "gatsby-source-filesystem": "^2.1.20",
     "gatsby-transformer-sharp": "^2.2.13",
     "konva": "^4.0.7",
-    "lodash": "latest",
+    "lodash-es": "4.17.21",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
@@ -33,7 +33,8 @@
     "redux": "latest",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.3"
   },
   "devDependencies": {
     "prettier": "^1.18.2",

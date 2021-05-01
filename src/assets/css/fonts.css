@@ -1,0 +1,55 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "BYekan";
+  src: url("../fonts/BYekan.eot?#") format("eot"), url("../fonts/BYekan.woff") format("woff"), url("../fonts/BYekan.ttf") format("truetype");
+}
+
+/* Saf3—5, Chrome4+, FF3.5, Opera 10+ */
+@font-face {
+  font-family: "SDF";
+  src: url("../fonts/IRANSansLight.woff") format("woff"), url("../fonts/IRANSansLight.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "SDF";
+  src: url("../fonts/IRANSansMedium.woff") format("woff"), url("../fonts/IRANSansMedium.ttf") format("truetype");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "SDF";
+  src: url("../fonts/IRANSansBold.woff") format("woff"), url("../fonts/IRANSansBold.ttf") format("truetype");
+  font-weight: 800;
+}
+
+.sdf, .logo-lg, h1 {
+  font-family: "SDF", SDF, tahoma, sans-serif !important;
+}
+
+.byekan {
+  font-weight: normal !important;
+  font-family: BYekan, "BYekan", "b yekan", tahoma, sans-serif !important;
+}
+
+fieldset, legend, strong, .btn, .smalltext, table, .tooltip {
+  font-family: BYekan, "BYekan", "b yekan", tahoma, sans-serif !important;
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}

@@ -1,13 +1,13 @@
-import { REDRAW, RESET_GRID } from '../constants/types';
+import { REDRAW, RESET_GRID } from '../../constants/types';
 
 import {
   BOX_WIDTH,
   BOX_HEIGHT,
   GRID_WIDTH,
   GRID_HEIGHT,
-} from '../constants/variables';
+} from '../../constants/variables';
 
-import { getLayout, getGridMeasurement } from '../constants/utilities';
+import { getLayout, getGridMeasurement } from '../../constants/utilities';
 
 const initialState = {
   layout: getLayout(GRID_WIDTH, GRID_HEIGHT),

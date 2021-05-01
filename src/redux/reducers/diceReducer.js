@@ -1,4 +1,4 @@
-import { ROLL_DICE, ENABLE_DICE, RESET_DICE } from '../constants/types';
+import { ROLL_DICE, ENABLE_DICE, RESET_DICE } from '../../constants/types';
 
 const initialState = {
   disabled: false,

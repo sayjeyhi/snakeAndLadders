@@ -1,8 +1,8 @@
 import React from 'react';
-import avatars from './../images/avatars/avatars';
-import { MAX_PLAYERS } from '../constants/variables';
 import { connect } from 'react-redux';
-import { addNewPlayer } from '../actions/GameActions';
+import avatars from '../assets/images/avatars/avatars';
+import { MAX_PLAYERS } from '../constants/variables';
+import { addNewPlayer } from '../redux/actions/GameActions';
 
 const Player = props => {
   const {

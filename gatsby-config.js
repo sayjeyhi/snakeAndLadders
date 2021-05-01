@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: `Snake and ladders starter`,
     description: `Just a react redux snake and ladder.`,
-    author: `@jafar-rezaei`,
+    author: `@sayjeyhi`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -12,7 +12,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/src/assets/images`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -31,7 +31,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-page-creator`,
       options: {
-        path: path.join(__dirname, 'src/web/pages'),
+        path: path.join(__dirname, 'src/pages'),
       },
     },
     {
@@ -49,7 +49,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/favicon/android-chrome-512x512.png`, // This path is relative to the root of the site.
+        icon: `src/assets/images/favicon/android-chrome-512x512.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

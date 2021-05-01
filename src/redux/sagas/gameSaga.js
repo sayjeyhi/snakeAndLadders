@@ -5,7 +5,7 @@ import {
   resetMessages,
   resetPlayers,
 } from '../actions/GameActions';
-import { RESTART_GAME } from './../constants/types';
+import { RESTART_GAME } from '../../constants/types';
 
 /**
  * Watch when to restart game
