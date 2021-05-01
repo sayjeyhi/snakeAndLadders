@@ -25,7 +25,7 @@ const Game = props => {
   }, [redraw]);
 
   return (
-    <div className={'main'}>
+    <div className='main'>
       {status === GAME_START ? (
         <StartPage />
       ) : status === GAME_ON ? (

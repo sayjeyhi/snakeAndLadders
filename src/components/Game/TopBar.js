@@ -13,14 +13,14 @@ const TopBar = props => {
   return (
     <>
       <Dice rolling={isDiceDisabled} />
-      <div className={'dataBlock'}>
+      <div className='dataBlock'>
         <section className="playersPart">
-          <div className={'separatorTitle'}>
-            <span className={'rightTitle'}>نفرات</span>
+          <div className='separatorTitle'>
+            <span className='rightTitle'>نفرات</span>
           </div>
           <Players players={players} />
         </section>
-        <section className={'rollDicePart'}>
+        <section className='rollDicePart'>
           <button
             className={'rollDiceBtn ' + (isDiceDisabled ? 'disabled' : '')}
             disabled={isDiceDisabled}

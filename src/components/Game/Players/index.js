@@ -42,7 +42,7 @@ const Players = props => {
       })}
       {playersCount < MAX_PLAYERS ? (
         <button
-          data-name={'افزودن بازیکن'}
+          data-name='افزودن بازیکن'
           className='addPlayer'
           onClick={() => {
             props.addNewPlayer();

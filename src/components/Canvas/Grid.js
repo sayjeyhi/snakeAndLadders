@@ -29,17 +29,17 @@ const Grid = props => {
               shadowOffset={{ x: 0, y: -5 }}
               shadowOpacity={1}
               shadowBlur={6}
-              shadowColor={'rgba(0,0,0,0.2)'}
+              shadowColor='rgba(0,0,0,0.2)'
             />
             <Text
               x={layout[box].x - boxWidth / 2}
               y={layout[box].y - boxHeight / 2}
-              fill={'rgba(0,0,0,0.6)'}
+              fill='rgba(0,0,0,0.6)'
               text={box}
               padding={4}
               fontSize={16}
-              fontStyle={'bold'}
-              fontFamily={'SDF'}
+              fontStyle='bold'
+              fontFamily='SDF'
             />
           </Group>
         );

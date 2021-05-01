@@ -15,7 +15,7 @@ const GamePlay = props => {
   } = props.state;
 
   return (
-    <div className={'gameBlock'}>
+    <div className='gameBlock'>
       <Stage width={grid.width} height={grid.height}>
         <Layer>
           {/* Main game board */}

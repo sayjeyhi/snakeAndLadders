@@ -12,13 +12,13 @@ const SortableResultItem = Sortable(props => (
 const Results = props => {
   return (
     <section className="results-section results">
-      <h1 className={'heading'}>نتایج مسابقه</h1>
+      <h1 className='heading'>نتایج مسابقه</h1>
       <div className="flexCenter resultsHolder">
         {props.players.map((player, i) => {
           const { name, pos, diceLog, snakeBites, ladderHikes } = player;
           return (
             <SortableResultItem key={i} sortId={i} outline="list">
-              <div className={'resultCard'}>
+              <div className='resultCard'>
                 <strong>{name}</strong>
                 {pos === 100 ? '( برنده 🎲 )' : ''} {diceLog.length} پرتاب تاس
                 &nbsp;
@@ -33,14 +33,14 @@ const Results = props => {
           );
         })}
       </div>
-      <div className={'flexCenter'}>
+      <div className='flexCenter'>
         <button
-          className={'btn big'}
+          className='btn big'
           onClick={() => {
             props.restartGame();
           }}
         >
-          <span className={'icon'} role="img" aria-label="easy">
+          <span className='icon' role="img" aria-label="easy">
             🚀
           </span>
           شروع بازی جدید

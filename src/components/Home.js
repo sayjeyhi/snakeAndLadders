@@ -40,25 +40,25 @@ const Home = props => {
       </div>
       <div className="flexCenter colorMode" />
 
-      <div className={'flexCenter'}>
+      <div className='flexCenter'>
         <button
-          className={'btn big red'}
+          className='btn big red'
           onClick={() => {
             props.restartGame();
           }}
         >
-          <span className={'icon'} role="img" aria-label="easy">
+          <span className='icon' role="img" aria-label="easy">
             🚀
           </span>
           شروع بازی
         </button>
         <button
-          className={'btn big black'}
+          className='btn big black'
           onClick={() => {
             alert('Coming Soon');
           }}
         >
-          <span className={'icon'} role="img" aria-label="easy">
+          <span className='icon' role="img" aria-label="easy">
             🏆
           </span>
           بازی آنلاین(به زودی)

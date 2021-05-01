@@ -46,7 +46,7 @@ const Layout = ({ children }) => {
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
-              id={'topHexagon'}
+              id='topHexagon'
               width="208"
               height="181"
               viewBox="0 0 208 180.13328398716322"
