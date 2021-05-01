@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { GAME_START, GAME_ON } from '../constants/variables';
-import { redraw } from '../redux/actions/GameActions';
+import { GAME_START, GAME_ON } from '../../constants/variables';
+import { redraw } from '../../redux/actions/GameActions';
 
-import StartPage from './StartPage';
-import GamePanel from './GamePanel';
+import StartPage from '../Home';
+import TopBar from './TopBar';
 import GamePlay from './GamePlay';
 import Results from './Results';
 import debounce from 'lodash-es/debounce';
@@ -30,7 +30,7 @@ const Game = props => {
         <StartPage />
       ) : status === GAME_ON ? (
         <>
-          <GamePanel />
+          <TopBar />
           <GamePlay />
         </>
       ) : (

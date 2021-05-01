@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import avatars from '../assets/images/avatars/avatars';
-import { MAX_PLAYERS } from '../constants/variables';
-import { addNewPlayer } from '../redux/actions/GameActions';
+import avatars from '../../../assets/images/avatars/avatars';
+import { MAX_PLAYERS } from '../../../constants/variables';
+import { addNewPlayer } from '../../../redux/actions/GameActions';
 
 const Player = props => {
   const {
@@ -43,7 +43,7 @@ const Players = props => {
       {playersCount < MAX_PLAYERS ? (
         <button
           data-name={'افزودن بازیکن'}
-          className={'addPlayer'}
+          className='addPlayer'
           onClick={() => {
             props.addNewPlayer();
           }}

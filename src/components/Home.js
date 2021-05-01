@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { restartGame } from '../redux/actions/GameActions';
 import logo from '../assets/images/logo.png';
 
-const StartPage = props => {
+const Home = props => {
   return (
     <div className="wholeHolder">
       <div className="flexCenter logo">
@@ -38,7 +38,7 @@ const StartPage = props => {
           </span>
         </div>
       </div>
-      <div className="flexCenter colorMode"></div>
+      <div className="flexCenter colorMode" />
 
       <div className={'flexCenter'}>
         <button
@@ -71,4 +71,4 @@ const StartPage = props => {
 export default connect(
   null,
   { restartGame }
-)(StartPage);
+)(Home);

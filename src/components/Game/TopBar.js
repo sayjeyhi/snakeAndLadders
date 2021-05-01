@@ -1,11 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Players from './Players';
 import Dice from './Dice';
-import { connect } from 'react-redux';
-import { rollDice, endGame, restartGame } from '../redux/actions/GameActions';
-import { getDice, getMessages, getPlayers } from "../redux/selectors";
+import { rollDice, endGame, restartGame } from '../../redux/actions/GameActions';
+import { getDice, getMessages, getPlayers } from "../../redux/selectors";
 
-const GamePanel = props => {
+const TopBar = props => {
   const { disabled: isDiceDisabled } = props.dice;
   const players = props.players;
   const messages = props.messages;
@@ -63,5 +63,5 @@ export default connect(
     endGame,
     rollDice
   }
-)(GamePanel);
+)(TopBar);
 

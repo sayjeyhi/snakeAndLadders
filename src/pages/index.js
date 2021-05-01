@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import Layout from '../components/Layout/layout';
 import SEO from '../components/Seo';
 import store from '../redux/store';
-import Game from '../components/Game';
+import Game from '../components/Game/Game';
 
 const Main = () => (
   <Layout>

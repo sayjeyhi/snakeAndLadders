@@ -1,10 +1,10 @@
 import React from 'react';
 import { Stage, Layer } from 'react-konva';
 
-import Grid from './Canvas/Grid';
-import Ladder from './Canvas/Ladder';
-import Player from './Canvas/Player';
-import Snake from './Canvas/Snake';
+import Grid from '../Canvas/Grid';
+import Ladder from '../Canvas/Ladder';
+import Player from '../Canvas/Player';
+import Snake from '../Canvas/Snake';
 import { connect } from 'react-redux';
 
 const GamePlay = props => {

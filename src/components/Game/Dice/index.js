@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getDice } from '../redux/selectors';
+import { getDice } from '../../../redux/selectors';
+import { StyledKubeWrapper } from './styles'
 
 const Dice = props => {
   const { rolling } = props;
@@ -8,7 +9,7 @@ const Dice = props => {
 
   const chooseClass = `show-${choose || 4}`;
   return (
-    <section id="cubeContainer" className={rolling && 'show'}>
+    <StyledKubeWrapper className={rolling && 'show'}>
       <div id="cube" className={'show-spinning ' + chooseClass}>
         <figure className="front">1</figure>
         <figure className="back">2</figure>
@@ -19,7 +20,7 @@ const Dice = props => {
           6
         </figure>
       </div>
-    </section>
+    </StyledKubeWrapper>
   );
 };
 
